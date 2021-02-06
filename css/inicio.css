@@ -1,2 +1,37 @@
 @import url("../css/normalize.css");
 @import url("../css/header-footer.css");
+
+
+.section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 70vh;
+}
+.section div{
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    background-color: #b0b5ba;
+    border: none;
+    border-radius: 5px;
+    padding: 20px 20px 20px 20px;
+    margin-top: 20px;
+}
+
+button{
+    background-color: white;
+    border: 1px solid #b0b5ba;
+    border-radius: 5px;
+    width: 201px;
+    height: 58px;
+    margin-top: 20px;
+}
+
+::placeholder{
+    color: white;
+    opacity: 0.5;
+}
