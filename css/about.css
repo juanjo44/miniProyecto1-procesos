@@ -1,2 +1,20 @@
 @import url("normalize.css");
 @import url("header-footer.css");
+
+
+.section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.description{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 65px;
+}
+
+.details{
+    width: 500px;
+}
