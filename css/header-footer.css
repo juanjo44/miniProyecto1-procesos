@@ -1,6 +1,7 @@
 /* Variables */
 :root {
     --font-family-content: "Roboto Condensed";
+    --input-color: #eee;
 }
 
 body {
@@ -74,4 +75,8 @@ li:hover a {
 a {
     color: #b0b5ba;
     text-decoration: none;
+}
+
+section {
+    min-height: 80vh;
 }
