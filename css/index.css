@@ -1,5 +1,5 @@
-@import url("../css/normalize.css");
-@import url("../css/header-footer.css");
+@import url("normalize.css");
+@import url("header-footer.css");
 
 section {
     position: relative;

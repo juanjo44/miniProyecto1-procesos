@@ -4,7 +4,7 @@
 }
 
 body {
-    font-family: var(--font-family-content);
+    font-family: var(--font-family-content), sans-serif;
 }
 
 .header {
@@ -23,7 +23,6 @@ body {
     background: transparent;
     border: none;
     margin: 20px;
-    font-family: var(--font-family-content), sans-serif;
     font-size: 20px;
     color: #b0b5ba;
     font-weight: 700;
