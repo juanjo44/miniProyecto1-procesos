@@ -2,6 +2,7 @@
 :root {
     --font-family-content: "Roboto Condensed";
     --input-color: #eee;
+    --button-shadow: 0px 0px 5px #111;
 }
 
 body {
@@ -64,7 +65,6 @@ ul {
 
 li {
     padding: 20px;
-    font-family: "Roboto Condensed", sans-serif;
     font-size: 20px;
     font-weight: 700;
 }
