@@ -19,16 +19,15 @@ section {
 }
 
 .search {
-    max-width: 80vw;
     display: flex;
-    justify-content: space-around;
+    align-items: center;
     background-color: #eee;
     padding: 1em;
     border-radius: 0.25em;
 }
 
-.search fieldset {
-    border: none;
+.country {
+    margin: 10px;
 }
 
 .search-year,
@@ -40,6 +39,14 @@ section {
 .search-denomination input {
     margin: 10px;
     border: 1px solid #ccc;
+    max-width: 70px;
+}
+
+.send button {
+    border: none;
+    background-color: #000;
+    color: #fff;
+    padding: 0.4em 1em;
 }
 
 .cards {
