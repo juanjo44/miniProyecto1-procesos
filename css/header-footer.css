@@ -1,12 +1,13 @@
 /* Variables */
 :root {
-    --font-family-content: "Roboto Condensed";
+    --font-family-content: "Roboto Condensed", sans-serif;
     --input-color: #eee;
+    --button-background-color: #000;
     --button-shadow: 0px 0px 5px #111;
 }
 
 body {
-    font-family: var(--font-family-content), sans-serif;
+    font-family: var(--font-family-content);
 }
 
 .header {
@@ -18,7 +19,7 @@ body {
 }
 
 .header img {
-    width: 30px;
+    min-width: 40px;
 }
 
 .menu {
@@ -37,6 +38,7 @@ body {
 button:hover {
     cursor: pointer;
 }
+
 .footer {
     color: #b0b5ba;
     display: flex;
@@ -51,36 +53,33 @@ button:hover {
     display: flex;
     justify-content: center;
 }*/
-ul {
+
+.header ul {
     display: flex;
     flex-direction: row;
 }
 
-ol,
-ul {
+.header ol,
+.header ul {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-li {
+.header li {
     padding: 20px;
     font-size: 20px;
     font-weight: 700;
 }
 
-li:hover {
+.header li:hover {
     background-color: #aab3bd;
 }
-li:hover a {
+.header li:hover a {
     color: #ffffff;
 }
 
-a {
+.header a {
     color: #b0b5ba;
     text-decoration: none;
-}
-
-section {
-    min-height: 80vh;
 }
