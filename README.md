@@ -1,1 +1,1 @@
-# miniProyecto1-procesos
+# Mini-proyecto Numismática Martínez

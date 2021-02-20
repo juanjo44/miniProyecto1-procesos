@@ -33,8 +33,8 @@
         </header>
         <section>
             <div class="coin-bill">
-                <button>Monedas</button>
-                <button>Billetes</button>
+                <button id="coin-button">Monedas</button>
+                <button id="bill-button">Billetes</button>
             </div>
             <div class="search">
                 <select name="country" id="country" class="country">
@@ -64,90 +64,7 @@
                 </div>
                 <div class="send"><button>Buscar</button></div>
             </div>
-            <div class="cards">
-                <div class="moneda">
-                    <div class="flip-card item">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <img
-                                    src="https://www.banrep.gov.co/sites/default/files/paginas/nueva_200_cara_235.jpg"
-                                    style="width: 100%; height: 100%"
-                                />
-                            </div>
-                            <div class="flip-card-back">
-                                <img
-                                    src="https://www.banrep.gov.co/sites/default/files/paginas/nueva_200_sello_235.jpg"
-                                    style="width: 100%; height: 100%"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="data item">
-                        <div class="description">
-                            <img
-                                src="https://cdn1.iconfinder.com/data/icons/office-250/32/Artboard_10-512.png"
-                                alt=""
-                            />
-                            <p>Colombia</p>
-                        </div>
-                        <div class="description">
-                            <img
-                                src="https://icons-for-free.com/iconfiles/png/512/tag+icon-1320184288185120373.png"
-                                alt=""
-                            />
-                            <p>$200</p>
-                        </div>
-                        <div class="description">
-                            <img
-                                src="https://i.pinimg.com/564x/90/7b/93/907b93a8f31202b6d91b54efb4ec712b.jpg"
-                                alt=""
-                            />
-                            <p>2012</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="billete">
-                    <div class="flip-card item">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Billete_de_2000_pesos_colombia_anverso.jpg"
-                                    style="width: 100%; height: 100%"
-                                />
-                            </div>
-                            <div class="flip-card-back">
-                                <img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Billete_de_2000_pesos_colombia_reverso.jpg/245px-Billete_de_2000_pesos_colombia_reverso.jpg"
-                                    style="width: 100%; height: 100%"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="data item">
-                        <div class="description">
-                            <img
-                                src="https://cdn1.iconfinder.com/data/icons/office-250/32/Artboard_10-512.png"
-                                alt=""
-                            />
-                            <p>Colombia</p>
-                        </div>
-                        <div class="description">
-                            <img
-                                src="https://icons-for-free.com/iconfiles/png/512/tag+icon-1320184288185120373.png"
-                                alt=""
-                            />
-                            <p>$2000</p>
-                        </div>
-                        <div class="description">
-                            <img
-                                src="https://i.pinimg.com/564x/90/7b/93/907b93a8f31202b6d91b54efb4ec712b.jpg"
-                                alt=""
-                            />
-                            <p>2015</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="cards" id="cards-container"></div>
         </section>
         <footer class="footer">
             <div>
@@ -162,5 +79,26 @@
                 </div>
             </div>
         </footer>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-firestore.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyBi287HnrP_NjYh0Z0szW9SmGEXLb6_gBk",
+                authDomain: "numismatica-martinez-jnc.firebaseapp.com",
+                projectId: "numismatica-martinez-jnc",
+                storageBucket: "numismatica-martinez-jnc.appspot.com",
+                messagingSenderId: "813099682427",
+                appId: "1:813099682427:web:e855eb47da740136a830de",
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+        </script>
+        <script src="../scripts/catalogue.js"></script>
     </body>
 </html>

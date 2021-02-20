@@ -1,0 +1,54 @@
+.bill-card {
+    display: grid;
+    grid-template-rows: 150px 1fr 40px;
+    width: 345px;
+    height: 250px;
+    border-radius: 0.5em;
+    box-shadow: 1px 1px 10px 0 #ccc;
+    padding: 10px;
+}
+
+.bill-card-data {
+    display: grid;
+    grid-template-columns: repeat(3, 115px);
+}
+
+.bill-property {
+    margin: 15px;
+}
+
+.bill-property {
+    display: grid;
+    grid-template-columns: 30px 170px;
+    align-items: center;
+}
+
+.bill-property div,
+.bill-property p {
+    margin: 5px;
+}
+
+.bill-like {
+    border: 1px solid #000;
+    border-radius: 0.25em;
+    padding: 0.5em;
+    width: 100%;
+    background-color: transparent;
+}
+
+.bill-like:hover {
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+.bill-card img {
+    width: 100%;
+    height: 100%;
+    display: inline;
+    vertical-align: middle;
+}
+
+.bill-card-photo img {
+    border-radius: 0.25em;
+}

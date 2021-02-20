@@ -1,5 +1,7 @@
 @import url("normalize.css");
 @import url("header-footer.css");
+@import url("coin-card.css");
+@import url("bill-card.css");
 
 section {
     display: flex;

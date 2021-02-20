@@ -83,3 +83,18 @@ button:hover {
     color: #b0b5ba;
     text-decoration: none;
 }
+
+/* Scroll */
+body::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ddd;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #aaa;
+}

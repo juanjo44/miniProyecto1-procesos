@@ -1,0 +1,50 @@
+.coin-card {
+    display: grid;
+    grid-template-rows: 170px;
+    grid-template-columns: 200px;
+    width: 200px;
+    height: 320px;
+    border-radius: 0.5em;
+    box-shadow: 1px 1px 10px 0 #ccc;
+    padding: 10px;
+}
+
+.coin-card-data {
+    padding: 10px;
+}
+
+.coin-property {
+    display: grid;
+    grid-template-columns: 30px 170px;
+    align-items: center;
+}
+
+.coin-property div,
+.coin-property p {
+    margin: 5px;
+}
+
+.coin-like {
+    border: 1px solid #000;
+    border-radius: 0.25em;
+    padding: 0.5em;
+    width: 100%;
+    background-color: transparent;
+}
+
+.coin-like:hover {
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+.coin-card img {
+    width: 100%;
+    height: 100%;
+    display: inline;
+    vertical-align: middle;
+}
+
+.coin-card-photo img {
+    border-radius: 0.25em;
+}
