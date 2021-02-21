@@ -1,73 +1,3 @@
-// Template de un coin-card
-const coinCardTemplate = (front, back, country, denom, year, likes, barter) => {
-    return `
-    <div class="coin-card">
-        <div class="coin-card-photo">
-            <img
-                src="${front}"
-                alt="Image photo"
-            />
-        </div>
-        <div class="coin-card-data">
-            <div class="coin-property">
-                <div class="image">
-                    <img src="../images/country.svg" alt="Country" />
-                </div>
-                <p>${country}</p>
-            </div>
-            <div class="coin-property">
-                <div class="image">
-                    <img src="../images/denom.svg" alt="Denomination" />
-                </div>
-                <p>${denom}</p>
-            </div>
-            <div class="coin-property">
-                <div class="image">
-                    <img src="../images/year.svg" alt="Year" />
-                </div>
-                <p>${year}</p>
-            </div>
-        </div>
-        <button class="coin-like">Me gusta</button>
-    </div>
-    `;
-};
-
-// Template de un bill-card
-const billCardTemplate = (front, back, country, denom, year, likes, barter) => {
-    return `
-    <div class="bill-card">
-        <div class="bill-card-photo">
-            <img
-                src="${front}"
-                alt="Image photo"
-            />
-        </div>
-        <div class="bill-card-data">
-            <div class="bill-property">
-                <div class="image">
-                    <img src="../images/country.svg" alt="Country" />
-                </div>
-                <p>${country}</p>
-            </div>
-            <div class="bill-property">
-                <div class="image">
-                    <img src="../images/denom.svg" alt="Denomination" />
-                </div>
-                <p>${denom}</p>
-            </div>
-            <div class="bill-property">
-                <div class="image">
-                    <img src="../images/year.svg" alt="Year" />
-                </div>
-                <p>${year}</p>
-            </div>
-        </div>
-        <button class="bill-like">Me gusta</button>
-    </div>
-    `;
-};
-
 // Trae la base de datos
 const db = firebase.firestore();
 
@@ -91,17 +21,18 @@ const oceania = document.getElementById("oceania");
 const getCoins = () => db.collection("coins").get();
 const getBills = () => db.collection("bills").get();
 
-// Interpreta los datos de América y los pinta
-america.addEventListener("click", async (e) => {
-    // Obtiene los datos desde la colección
-    const coinQuery = await getCoins();
-    const billQuery = await getBills();
-    // Limpia la pantalla antes de dibujar los elementos
+const cleanScreen = () => {
     coinsContainer.innerHTML = "";
     billsContainer.innerHTML = "";
     continentsContainer.style.display = "none";
     backButton.style.display = "flex";
-    // Recorre los documentos (cards) y sus datos los pinta en pantalla
+};
+
+// Interpreta los datos de América y los pinta
+america.addEventListener("click", async (e) => {
+    const coinQuery = await getCoins();
+    const billQuery = await getBills();
+    cleanScreen();
     getContinentData(coinQuery, billQuery, "América");
 });
 
@@ -140,7 +71,7 @@ const getContinentData = (coinQuery, billQuery, continent) => {
 };
 
 // Limpia la pantalla para volver al menú
-backButton.addEventListener("click", async (e) => {
+backButton.addEventListener("click", (e) => {
     continentsContainer.style.display = "grid";
     backButton.style.display = "none";
     coinsContainer.innerHTML = "";
