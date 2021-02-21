@@ -75,6 +75,10 @@ const db = firebase.firestore();
 const coinsContainer = document.getElementById("coins-container");
 const billsContainer = document.getElementById("bills-container");
 
+// Trae algunos elementos que se van a mostrar u ocultar al seleccionar un continente
+const continentsContainer = document.getElementById("continents");
+const backButton = document.getElementById("back-button");
+
 // Trae los botones de los continentes
 const africa = document.getElementById("africa");
 const america = document.getElementById("america");
@@ -93,12 +97,15 @@ america.addEventListener("click", async (e) => {
     const coinQuery = await getCoins();
     const billQuery = await getBills();
     // Limpia la pantalla antes de dibujar los elementos
-    // cardsContainer.innerHTML = "";
+    coinsContainer.innerHTML = "";
+    billsContainer.innerHTML = "";
+    continentsContainer.style.display = "none";
+    backButton.style.display = "flex";
     // Recorre los documentos (cards) y sus datos los pinta en pantalla
     getContinentData(coinQuery, billQuery, "América");
 });
 
-// Obtiene los datos y los pinta
+// Pinta los datos
 const getContinentData = (coinQuery, billQuery, continent) => {
     // Pinta las monedas
     coinQuery.forEach((doc) => {
@@ -131,3 +138,11 @@ const getContinentData = (coinQuery, billQuery, continent) => {
         }
     });
 };
+
+// Limpia la pantalla para volver al menú
+backButton.addEventListener("click", async (e) => {
+    continentsContainer.style.display = "grid";
+    backButton.style.display = "none";
+    coinsContainer.innerHTML = "";
+    billsContainer.innerHTML = "";
+});

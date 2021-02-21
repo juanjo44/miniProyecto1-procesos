@@ -147,10 +147,11 @@ p {
 
 /* Continents */
 .continents {
-    width: 70vw;
-    height: 50vh;
+    width: 80vw;
+    height: 60vh;
     margin: 20px;
     display: grid;
+    grid-gap: 1px;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
 }
@@ -238,4 +239,14 @@ p {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 50px;
+}
+
+.back-button {
+    display: none;
+    cursor: pointer;
+    justify-content: center;
+}
+
+.back-button img {
+    width: 20px;
 }
