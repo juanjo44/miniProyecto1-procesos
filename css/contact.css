@@ -41,6 +41,7 @@ form {
     padding: 3em;
     border-radius: 0.3em;
     color: white;
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .inputs {
@@ -69,8 +70,9 @@ form {
     color: #fff;
     background-color: #000;
     transition: transform 1s;
+    cursor: pointer;
 }
 
 .send:hover {
-    transform: scale(1.03);
+    transform: scale(1.01);
 }

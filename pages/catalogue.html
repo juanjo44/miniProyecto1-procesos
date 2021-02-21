@@ -52,17 +52,29 @@
                 </select>
                 <div class="search-year">
                     <p>Año</p>
-                    <input type="number" placeholder="Desde" />
-                    <p>-</p>
-                    <input type="number" placeholder="Hasta" />
+                    <div>
+                        <input type="number" placeholder="Desde" />
+                        <p>-</p>
+                        <input type="number" placeholder="Hasta" />
+                    </div>
                 </div>
                 <div class="search-denomination">
                     <p>Denominación</p>
-                    <input type="number" placeholder="Desde" />
-                    <p>-</p>
-                    <input type="number" placeholder="Hasta" />
+                    <div>
+                        <input type="number" placeholder="Desde" />
+                        <p>-</p>
+                        <input type="number" placeholder="Hasta" />
+                    </div>
                 </div>
                 <div class="send"><button>Buscar</button></div>
+            </div>
+            <div class="continents">
+                <div class="africa"><p>África</p></div>
+                <div class="america"><p>América</p></div>
+                <div class="antartica"><p>Antártica</p></div>
+                <div class="asia"><p>Asia</p></div>
+                <div class="europe"><p>Europa</p></div>
+                <div class="oceania"><p>Oceanía</p></div>
             </div>
             <div class="cards" id="cards-container"></div>
         </section>
@@ -79,6 +91,7 @@
                 </div>
             </div>
         </footer>
+
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-firestore.js"></script>

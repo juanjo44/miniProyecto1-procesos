@@ -20,35 +20,54 @@ section {
     padding: 10px;
 }
 
+/* Filtro de búsqueda */
+
 .search {
     display: flex;
     align-items: center;
-    background-color: #eee;
+    box-shadow: 0 0 10px 5px #eee;
     padding: 1em;
-    border-radius: 0.25em;
+    border-radius: 0.5em;
+    margin: 20px 0;
 }
 
 .country {
-    margin: 10px;
+    background-color: rgb(248, 248, 248);
+    padding: 1em;
+    border: 1px solid #eee;
+    /* margin: 10px; */
 }
 
 .search-year,
 .search-denomination {
     display: flex;
+    align-items: center;
+    margin: 0 20px;
+    padding: 5px 20px;
+    border-radius: 0.25em;
+    background-color: rgb(248, 248, 248);
 }
 
 .search-year input,
 .search-denomination input {
-    margin: 10px;
+    /* margin: 10px; */
     border: 1px solid #ccc;
+    border-radius: 0.25em;
     max-width: 70px;
+    padding: 10px;
+}
+
+.search-year p,
+.search-denomination p {
+    margin: 5px;
 }
 
 .send button {
     border: none;
+    border-radius: 0.25em;
     background-color: #000;
     color: #fff;
-    padding: 0.4em 1em;
+    padding: 1.1em 1.5em;
 }
 
 .cards {
@@ -56,8 +75,7 @@ section {
     margin: 10px;
 }
 
-/* Moneda */
-.moneda {
+/* .moneda {
     width: 300px;
     height: 150px;
     display: grid;
@@ -100,7 +118,7 @@ section {
     display: inline;
     vertical-align: middle;
     padding: 5px;
-}
+} */
 
 p {
     display: inline;
@@ -135,4 +153,81 @@ p {
 /* Style the back side */
 .flip-card-back {
     transform: rotateY(180deg);
+}
+
+/* Continents */
+.continents {
+    width: 70vw;
+    height: 50vh;
+    margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.continents div {
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 2em;
+    cursor: pointer;
+    position: relative;
+}
+
+.continents div:hover p {
+    transform: scale(1.1);
+}
+
+/* Continents photos */
+
+.africa::before,
+.america::before,
+.antartica::before,
+.asia::before,
+.europe::before,
+.oceania::before {
+    content: "";
+    background-color: rgba(0, 0, 0, 1);
+    background-size: cover;
+    filter: brightness(0.5);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.africa::before {
+    background-image: url("https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=966&q=80");
+}
+
+.america::before {
+    background-image: url("https://images.unsplash.com/photo-1532443603613-61fa154742cd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1190&q=80");
+}
+
+.antartica::before {
+    background-image: url("https://images.unsplash.com/photo-1519558096640-8fafacd96ac1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
+}
+
+.asia::before {
+    background-image: url("https://images.unsplash.com/photo-1535139262971-c51845709a48?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80");
+}
+
+.europe::before {
+    background-image: url("https://images.unsplash.com/photo-1515877154276-0e848de0d195?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1001&q=80");
+}
+
+.oceania::before {
+    background-image: url("https://images.unsplash.com/photo-1589330273594-fade1ee91647?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80");
+}
+
+.africa p,
+.america p,
+.antartica p,
+.asia p,
+.europe p,
+.oceania p {
+    position: relative;
+    transition: transform 1s;
 }

@@ -1,20 +1,31 @@
 @import url("normalize.css");
 @import url("header-footer.css");
 
-
-.section{
+.section {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.description{
+.description {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-top: 65px;
 }
 
-.details{
+.details {
     width: 500px;
+}
+
+.details h2 {
+    font-size: 3em;
+}
+
+.details p {
+    font-size: 1.5em;
+}
+
+.details a {
+    color: rgb(199, 169, 0);
 }
