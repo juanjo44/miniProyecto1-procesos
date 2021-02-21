@@ -32,10 +32,6 @@
             </div>
         </header>
         <section>
-            <div class="coin-bill">
-                <button id="coin-button">Monedas</button>
-                <button id="bill-button">Billetes</button>
-            </div>
             <div class="search">
                 <select name="country" id="country" class="country">
                     <option value="">Selecciona un país</option>
@@ -69,14 +65,17 @@
                 <div class="send"><button>Buscar</button></div>
             </div>
             <div class="continents">
-                <div class="africa"><p>África</p></div>
-                <div class="america"><p>América</p></div>
-                <div class="antartica"><p>Antártica</p></div>
-                <div class="asia"><p>Asia</p></div>
-                <div class="europe"><p>Europa</p></div>
-                <div class="oceania"><p>Oceanía</p></div>
+                <div class="africa" id="africa"><p>África</p></div>
+                <div class="america" id="america"><p>América</p></div>
+                <div class="antartica" id="antartica"><p>Antártica</p></div>
+                <div class="asia" id="asia"><p>Asia</p></div>
+                <div class="europe" id="europe"><p>Europa</p></div>
+                <div class="oceania" id="oceania"><p>Oceanía</p></div>
             </div>
-            <div class="cards" id="cards-container"></div>
+            <div class="cards-container" id="cards-container">
+                <div class="coins-container" id="coins-container"></div>
+                <div class="bills-container" id="bills-container"></div>
+            </div>
         </section>
         <footer class="footer">
             <div>

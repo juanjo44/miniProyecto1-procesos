@@ -10,16 +10,6 @@ section {
     width: 100%;
 }
 
-.coin-bill {
-    margin: 20px;
-}
-
-.coin-bill button {
-    border: none;
-    font-size: 20px;
-    padding: 10px;
-}
-
 /* Filtro de búsqueda */
 
 .search {
@@ -230,4 +220,22 @@ p {
 .oceania p {
     position: relative;
     transition: transform 1s;
+}
+
+/* Cards container */
+.cards-container {
+    display: grid;
+    grid-gap: 30px;
+}
+
+.coins-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 50px;
+}
+
+.bills-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 50px;
 }

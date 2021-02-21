@@ -71,53 +71,63 @@ const billCardTemplate = (front, back, country, denom, year, likes, barter) => {
 // Trae la base de datos
 const db = firebase.firestore();
 
-// Trae el contenedor HTML donde se van a mostrar los cards
-const cardsContainer = document.getElementById("cards-container");
+// Trae los contenedores HTML donde se van a mostrar los cards
+const coinsContainer = document.getElementById("coins-container");
+const billsContainer = document.getElementById("bills-container");
 
-// Trae los botones para ver las monedas y billetes
-const coinButton = document.getElementById("coin-button");
-const billButton = document.getElementById("bill-button");
+// Trae los botones de los continentes
+const africa = document.getElementById("africa");
+const america = document.getElementById("america");
+const antartica = document.getElementById("antartica");
+const asia = document.getElementById("asia");
+const europe = document.getElementById("europe");
+const oceania = document.getElementById("oceania");
 
 // Trae los datos desde las colecciones de Firebase
 const getCoins = () => db.collection("coins").get();
 const getBills = () => db.collection("bills").get();
 
-// Interpreta los datos de las monedas y los pinta
-coinButton.addEventListener("click", async (e) => {
+// Interpreta los datos de América y los pinta
+america.addEventListener("click", async (e) => {
     // Obtiene los datos desde la colección
     const coinQuery = await getCoins();
-    // Limpia la pantalla antes de dibujar los elementos
-    cardsContainer.innerHTML = "";
-    // Recorre los documentos (cards) y sus datos los pinta en pantalla
-    coinQuery.forEach((doc) => {
-        cardsContainer.innerHTML += coinCardTemplate(
-            doc.data().front,
-            doc.data().back,
-            doc.data().country,
-            doc.data().denom,
-            doc.data().year,
-            doc.data().likes,
-            doc.data().barter
-        );
-    });
-});
-
-// Interpreta los datos de los billetes y los pinta
-billButton.addEventListener("click", async (e) => {
-    // Obtiene los datos desde la colección
     const billQuery = await getBills();
     // Limpia la pantalla antes de dibujar los elementos
-    cardsContainer.innerHTML = "";
+    // cardsContainer.innerHTML = "";
     // Recorre los documentos (cards) y sus datos los pinta en pantalla
-    billQuery.forEach((doc) => {
-        cardsContainer.innerHTML += billCardTemplate(
-            doc.data().front,
-            doc.data().back,
-            doc.data().country,
-            doc.data().denom,
-            doc.data().year,
-            doc.data().likes,
-            doc.data().barter
-        );
-    });
+    getContinentData(coinQuery, billQuery, "América");
 });
+
+// Obtiene los datos y los pinta
+const getContinentData = (coinQuery, billQuery, continent) => {
+    // Pinta las monedas
+    coinQuery.forEach((doc) => {
+        if (doc.data().continent === continent) {
+            // Agrega cada documento de moneda (card)
+            coinsContainer.innerHTML += coinCardTemplate(
+                doc.data().front,
+                doc.data().back,
+                doc.data().country,
+                doc.data().denom,
+                doc.data().year,
+                doc.data().likes,
+                doc.data().barter
+            );
+        }
+    });
+    // Pinta los billetes
+    billQuery.forEach((doc) => {
+        if (doc.data().continent === continent) {
+            // Agrega cada documento de billete (card)
+            billsContainer.innerHTML += billCardTemplate(
+                doc.data().front,
+                doc.data().back,
+                doc.data().country,
+                doc.data().denom,
+                doc.data().year,
+                doc.data().likes,
+                doc.data().barter
+            );
+        }
+    });
+};
