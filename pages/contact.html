@@ -32,12 +32,22 @@
             </div>
         </header>
         <section>
-            <form action="">
+            <form method="POST" action="../php/contact.php">
                 <h1 class="inputs title">¿Quieres intercambiar? Contáctame</h1>
-                <input class="inputs name" type="text" placeholder="Nombre" />
-                <input class="inputs email" type="email" placeholder="Correo electrónico" />
-                <textarea class="inputs message" name="Mensaje" placeholder="Mensaje"></textarea>
-                <input class="inputs send" type="button" value="Enviar" />
+                <input name="name" class="inputs name" type="text" placeholder="Nombre" />
+                <input
+                    name="email"
+                    class="inputs email"
+                    type="email"
+                    placeholder="Correo electrónico"
+                />
+                <textarea
+                    name="message"
+                    class="inputs message"
+                    name="Mensaje"
+                    placeholder="Mensaje"
+                ></textarea>
+                <input class="inputs send" type="submit" value="Enviar" />
             </form>
         </section>
         <footer class="footer">

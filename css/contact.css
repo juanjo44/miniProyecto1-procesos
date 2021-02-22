@@ -55,16 +55,19 @@ form {
 .name {
     grid-area: name;
     background-color: #eee;
+    padding: 10px;
 }
 
 .email {
     grid-area: email;
     background-color: #eee;
+    padding: 10px;
 }
 
 .message {
     grid-area: message;
     background-color: #eee;
+    padding: 10px;
     resize: none;
 }
 .send {
