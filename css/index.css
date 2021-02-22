@@ -14,7 +14,7 @@
 .banner::before {
     content: "";
     background-color: rgba(0, 0, 0, 1);
-    background-image: url("https://images.unsplash.com/photo-1527155781285-a10fb8d2be02?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80");
+    background-image: url("../images/banner.png");
     background-size: cover;
     filter: brightness(0.35);
     position: absolute;
@@ -44,7 +44,7 @@
     color: white;
     font-size: 1.5em;
     border: none;
-    padding: 1.5em 2em;
+    padding: 1.3em 2em;
     width: 150px;
     height: 10px;
     background-color: transparent;
