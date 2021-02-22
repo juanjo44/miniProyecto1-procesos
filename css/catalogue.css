@@ -2,6 +2,8 @@
 @import url("header-footer.css");
 @import url("coin-card.css");
 @import url("bill-card.css");
+@import url("continents.css");
+@import url("continent-container.css");
 
 section {
     display: flex;
@@ -65,182 +67,11 @@ section {
     margin: 10px;
 }
 
-/* .moneda {
-    width: 300px;
-    height: 150px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 10px;
-    border-radius: 0.5em;
-    box-shadow: 1px 1px 10px 0 lightgray;
-    margin: 20px;
-}
-
-.billete {
-    width: 300px;
-    height: 200px;
-    display: grid;
-    grid-template-rows: 4fr 1fr;
-    padding: 10px;
-    border-radius: 0.5em;
-    box-shadow: 1px 1px 10px 0 lightgray;
-    margin: 10px;
-}
-
-.item {
-    display: flex;
-    justify-content: center;
-    padding: 5px;
-}
-
-.data {
-    display: flex;
-    flex-direction: column;
-}
-
-.billete .data {
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.data img {
-    width: 20px;
-    display: inline;
-    vertical-align: middle;
-    padding: 5px;
-} */
-
 p {
     display: inline;
 }
 
-/* FLIP-CARD */
-
-/* This container is needed to position the front and back side */
-.flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 2s;
-    transform-style: preserve-3d;
-}
-
-/* Do an horizontal flip when you move the mouse over the flip box container */
-.flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-}
-
-/* Position the front and back side */
-.flip-card-front,
-.flip-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden; /* Safari */
-    backface-visibility: hidden;
-}
-
-/* Style the back side */
-.flip-card-back {
-    transform: rotateY(180deg);
-}
-
-/* Continents */
-.continents {
-    width: 80vw;
-    height: 60vh;
-    margin: 20px;
-    display: grid;
-    grid-gap: 1px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-}
-
-.continents div {
-    background-color: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-size: 2em;
-    cursor: pointer;
-    position: relative;
-}
-
-.continents div:hover p {
-    transform: scale(1.1);
-}
-
-/* Continents photos */
-
-.africa::before,
-.america::before,
-.antartica::before,
-.asia::before,
-.europe::before,
-.oceania::before {
-    content: "";
-    background-color: rgba(0, 0, 0, 1);
-    background-size: cover;
-    filter: brightness(0.5);
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-.africa::before {
-    background-image: url("../images/africa.png");
-}
-
-.america::before {
-    background-image: url("../images/america.png");
-}
-
-.antartica::before {
-    background-image: url("../images/antartica.png");
-}
-
-.asia::before {
-    background-image: url("../images/asia.png");
-}
-
-.europe::before {
-    background-image: url("../images/europe.png");
-}
-
-.oceania::before {
-    background-image: url("../images/oceania.png");
-}
-
-.africa p,
-.america p,
-.antartica p,
-.asia p,
-.europe p,
-.oceania p {
-    position: relative;
-    transition: transform 1s;
-}
-
-/* Cards container */
-.cards-container {
-    display: grid;
-    grid-gap: 30px;
-}
-
-.coins-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 50px;
-}
-
-.bills-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 50px;
-}
-
+/* Page management */
 .back-button {
     display: none;
     cursor: pointer;

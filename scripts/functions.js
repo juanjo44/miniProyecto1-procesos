@@ -1,30 +1,17 @@
 // Pinta los datos
-const paintData = (coinQuery, billQuery) => {
-    let fragment = "";
-    // Pinta las monedas
-    coinQuery.forEach((doc) => {
-        // Agrega cada documento de moneda (card)
-        fragment += coinCardTemplate(
-            doc.data().front,
-            doc.data().back,
-            doc.data().country,
-            doc.data().denomsymbol,
-            doc.data().denomvalue,
-            doc.data().year,
-            doc.data().likes,
-            doc.data().barter
-        );
-    });
-    coinsContainer.innerHTML = fragment;
+const categorize = (coinQuery, billQuery) => {
+    let countries = {},
+        fragment = "";
 
-    fragment = "";
-    // Pinta los billetes
-    billQuery.forEach((doc) => {
-        // Agrega cada documento de billete (card)
-        fragment += billCardTemplate(
+    // Categoriza las monedas por país
+    coinQuery.forEach((doc) => {
+        if (countries[doc.data().country] === undefined) {
+            countries[doc.data().country] = ["", ""];
+        }
+        countries[doc.data().country][0] += coinCardTemplate(
             doc.data().front,
             doc.data().back,
-            doc.data().country,
+            countriesMap[doc.data().country][0],
             doc.data().denomsymbol,
             doc.data().denomvalue,
             doc.data().year,
@@ -32,7 +19,28 @@ const paintData = (coinQuery, billQuery) => {
             doc.data().barter
         );
     });
-    billsContainer.innerHTML = fragment;
+
+    // Categoriza los billetes por país
+    billQuery.forEach((doc) => {
+        if (countries[doc.data().country] == undefined) {
+            countries[doc.data().country] = ["", ""];
+        }
+        countries[doc.data().country][1] += billCardTemplate(
+            doc.data().front,
+            doc.data().back,
+            countriesMap[doc.data().country][0],
+            doc.data().denomsymbol,
+            doc.data().denomvalue,
+            doc.data().year,
+            doc.data().likes,
+            doc.data().barter
+        );
+    });
+
+    for (const c in countries) {
+        fragment += countryTemplate(countriesMap[c][0], countries[c][0], countries[c][1]);
+    }
+    continentCards.innerHTML = fragment;
 };
 
 // Limpia la pantalla para mostrar la información de un continente

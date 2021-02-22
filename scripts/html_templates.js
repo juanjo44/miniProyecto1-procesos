@@ -67,3 +67,13 @@ const billCardTemplate = (front, back, country, denomsymbol, denomvalue, year, l
     </div>
     `;
 };
+
+const countryTemplate = (country, coins, bills) => {
+    return `
+    <div class="country-container">
+        <p>${country}</p>
+        <div class="country-coins">${coins}</div>
+        <div class="country-bills">${bills}</div>
+    </div>
+    `;
+};

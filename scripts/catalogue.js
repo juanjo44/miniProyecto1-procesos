@@ -11,13 +11,14 @@ america.addEventListener("click", async (e) => {
     const coinQuery = await getAmericaCoins();
     const billQuery = await getAmericaBills();
     cleanScreen();
-    paintData(coinQuery, billQuery);
+    categorize(coinQuery, billQuery);
 });
 
 // Limpia la pantalla para volver al menú
 backButton.addEventListener("click", (e) => {
     continentsContainer.style.display = "grid";
     backButton.style.display = "none";
+    // continentCards.innerHTML = ""; // ! FALTA CORREGIR
     coinsContainer.innerHTML = "";
     billsContainer.innerHTML = "";
 });

@@ -1,0 +1,48 @@
+/* Cards container */
+.cards-container {
+    display: grid;
+    grid-gap: 30px;
+}
+
+.coins-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 50px;
+}
+
+.bills-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 50px;
+}
+
+/* ! PRUEBA */
+
+.continent-cards {
+    display: flex;
+    flex-direction: column;
+}
+
+.country-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.country-container > p {
+    font-size: 30px;
+}
+
+.country-coins {
+    margin: 20px auto;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: stretch;
+}
+
+.country-bills {
+    margin: 20px auto;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+}

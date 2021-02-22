@@ -1,4 +1,5 @@
 // Trae los contenedores HTML donde se van a mostrar los cards
+const continentCards = document.getElementById("continent-cards");
 const coinsContainer = document.getElementById("coins-container");
 const billsContainer = document.getElementById("bills-container");
 
