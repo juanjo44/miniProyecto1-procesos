@@ -64,3 +64,48 @@ backButton.addEventListener("click", (e) => {
     backButton.style.display = "none";
     continentCards.innerHTML = "";
 });
+
+
+// Mira qué hay dentro de los campos del filtro
+search.addEventListener("click", async (e) => {
+    let yi = iniYear.value, yf = finYear.value, di = iniDen.value, df = finDen.value, pais = country.value;
+    let ans = dataProcessing(yi, yf, di, df, pais);
+
+    let collectionCoins = "";
+    let collectionBills = "";
+    switch(ans[5]){
+        case "Antartica":
+            collectionCoins = await getAntarticaCoins();
+            collectionBills = await getAntarticaBills();
+            break;
+        case "Africa":
+            collectionCoins = await getAfricaCoins();
+            collectionBills = await getAfricaBills();
+            break;
+        case "Europe":
+            collectionCoins = await getEuropeCoins();
+            collectionBills = await getEuropeBills();
+            break;
+        case "North America":
+            collectionCoins = await getAmericaCoins();
+            collectionBills = await getAmericaBills();
+            break;
+        case "South America":
+            collectionCoins = await getAmericaCoins();
+            collectionBills = await getAmericaBills();
+            break;
+        case "Oceania":
+            collectionCoins = await getOceaniaCoins();
+            collectionBills = await getOceaniaBills();
+            break;
+        case "Asia":
+            collectionCoins = await getAsiaCoins();
+            collectionBills = await getAsiaBills();
+            break;
+        default:
+            alert("Ojo con eso manito");
+            break;
+    }
+
+    filter(collectionCoins, collectionBills, ans);
+});

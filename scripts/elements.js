@@ -4,6 +4,12 @@ const continentCards = document.getElementById("continent-cards");
 // Trae algunos elementos que se van a mostrar u ocultar
 const continentsContainer = document.getElementById("continents");
 const backButton = document.getElementById("back-button");
+const send = document.getElementById("search");
+let iniYear = document.getElementById("iniYear");
+let finYear = document.getElementById("finYear");
+let iniDen = document.getElementById("iniDen");
+let finDen = document.getElementById("finDen");
+let country = document.getElementById("country");
 
 // Trae los botones de los continentes
 const africa = document.getElementById("africa");
