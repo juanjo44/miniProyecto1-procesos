@@ -82,3 +82,9 @@ form {
 .send:hover {
     transform: scale(1.01);
 }
+
+input:active,
+input:focus,
+textarea {
+    outline: 0;
+}

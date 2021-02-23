@@ -15,6 +15,8 @@ const getEuropeBills = () => db.collection("europeBills").get();
 const getOceaniaCoins = () => db.collection("oceaniaCoins").get();
 const getOceaniaBills = () => db.collection("oceaniaBills").get();
 
+fillCountryOptions();
+
 // Interpreta los datos de cada continente y los pinta
 africa.addEventListener("click", async (e) => {
     const coinQuery = await getAfricaCoins();
@@ -65,15 +67,18 @@ backButton.addEventListener("click", (e) => {
     continentCards.innerHTML = "";
 });
 
-
 // Mira qué hay dentro de los campos del filtro
 search.addEventListener("click", async (e) => {
-    let yi = iniYear.value, yf = finYear.value, di = iniDen.value, df = finDen.value, pais = country.value;
+    let yi = iniYear.value,
+        yf = finYear.value,
+        di = iniDen.value,
+        df = finDen.value,
+        pais = country.value;
     let ans = dataProcessing(yi, yf, di, df, pais);
 
     let collectionCoins = "";
     let collectionBills = "";
-    switch(ans[5]){
+    switch (ans[5]) {
         case "Antartica":
             collectionCoins = await getAntarticaCoins();
             collectionBills = await getAntarticaBills();

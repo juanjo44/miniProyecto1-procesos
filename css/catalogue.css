@@ -81,3 +81,8 @@ p {
 .back-button img {
     width: 20px;
 }
+
+input:active,
+input:focus {
+    outline: 0;
+}
