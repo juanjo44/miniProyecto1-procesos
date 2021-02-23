@@ -30,19 +30,25 @@
 }
 
 .country-container > p {
+    width: 100%;
     font-size: 30px;
     font-weight: bold;
+    background-color: rgb(250, 250, 250);
+    padding: 10px;
+    margin: 0 0 30px 0;
+    border-bottom: 1px solid #aaa;
 }
 
 .country-coins {
-    margin: 30px 0;
+    width: 100%;
+    margin: 0 0 30px 0;
     display: grid;
-    grid-gap: 10px;
+    grid-gap: 80px;
     grid-template-columns: repeat(4, 1fr);
 }
 
 .country-bills {
-    margin: 30px auto;
+    width: 100%;
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(3, 1fr);
