@@ -11,6 +11,9 @@
         />
         <link rel="stylesheet" href="../css/inicio.css" />
         <title>Numismática</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        
+        
     </head>
     <body>
         <header class="header">
@@ -33,10 +36,16 @@
         </header>
         <section class="section">
             <div>
-                <input type="email" placeholder="email" id="email" />
-                <input type="password" placeholder="contraseña" id="password" />
+                <form id="signin-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="email" id="signin-email"  class="form-control" required/>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="contraseña" id="signin-password" class="form-control" required/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Inciar</button>  
+                </form>
             </div>
-            <button><a href="">Ingresar</a></button>
         </section>
         <footer class="footer">
             <div>
@@ -51,5 +60,31 @@
                 </div>
             </div>
         </footer>
+
+                <!-- The core Firebase JS SDK is always required and must be listed first -->
+                <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+                <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-firestore.js"></script>
+                <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-auth.js"></script>
+        
+                <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#available-libraries -->
+        
+                <script>
+                    // Your web app's Firebase configuration
+                    var firebaseConfig = {
+                        apiKey: "AIzaSyBi287HnrP_NjYh0Z0szW9SmGEXLb6_gBk",
+                        authDomain: "numismatica-martinez-jnc.firebaseapp.com",
+                        projectId: "numismatica-martinez-jnc",
+                        storageBucket: "numismatica-martinez-jnc.appspot.com",
+                        messagingSenderId: "813099682427",
+                        appId: "1:813099682427:web:e855eb47da740136a830de",
+                    };
+                    // Initialize Firebase
+                    firebase.initializeApp(firebaseConfig);
+                    const auth = firebase.auth();
+                </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+        <script src="../scripts/inicio.js"></script>
     </body>
 </html>
