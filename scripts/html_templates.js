@@ -77,3 +77,11 @@ const countryTemplate = (country, coins, bills) => {
     </div>
     `;
 };
+
+const notFoundTemplate = () => {
+    return `
+    <div class="not-found">
+        <p>No hay monedas o billetes aquí</p>
+    </div>
+    `;
+};

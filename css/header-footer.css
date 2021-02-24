@@ -21,6 +21,7 @@ body {
     box-shadow: 0px 1px 10px #b0b5ba;
     background-color: #000;
     color: #fff;
+    height: 10vh;
 }
 
 .header img {
@@ -45,11 +46,27 @@ button:hover {
 }
 
 .footer {
-    color: #b0b5ba;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
+    margin-top: 50vh;
+    background-color: #000;
+    color: #fff;
+    padding: 50px;
+}
+
+.footer img {
+    width: 10vh;
+}
+
+.footer a {
+    color: #aaa;
+}
+
+.footer p:nth-of-type(1) {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 20px 0 30px 0;
 }
 
 /*section{

@@ -40,7 +40,7 @@ const categorize = (coinQuery, billQuery) => {
     for (const c in countries) {
         fragment += countryTemplate(countriesMap[c][0], countries[c][0], countries[c][1]);
     }
-    continentCards.innerHTML = fragment;
+    continentCards.innerHTML = fragment != "" ? fragment : notFoundTemplate();
 };
 
 // Limpia la pantalla para mostrar la información de un continente
@@ -83,11 +83,8 @@ const filter = (coinQuery, billQuery, ans) => {
     let countries = {},
         fragment = "";
 
-    console.log(coinQuery);
     // Categoriza las monedas por país
     coinQuery.forEach((doc) => {
-        console.log("Hola12");
-        console.log(doc.data().country);
         if (
             countriesMap[doc.data().country][0] === pais &&
             di <= doc.data().denomvalue &&
@@ -109,7 +106,6 @@ const filter = (coinQuery, billQuery, ans) => {
                 doc.data().likes,
                 doc.data().barter
             );
-            console.log("Hola45");
         }
     });
 
@@ -138,15 +134,12 @@ const filter = (coinQuery, billQuery, ans) => {
         }
     });
 
-    console.log(countries);
-
     for (const c in countries) {
         fragment += countryTemplate(countriesMap[c][0], countries[c][0], countries[c][1]);
     }
 
-    console.log(fragment);
     cleanScreen();
-    continentCards.innerHTML = fragment;
+    continentCards.innerHTML = fragment != "" ? fragment : notFoundTemplate();
 };
 
 const fillCountryOptions = () => {

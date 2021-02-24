@@ -45,7 +45,7 @@ section {
     /* margin: 10px; */
     border: 1px solid #ccc;
     border-radius: 0.25em;
-    max-width: 70px;
+    max-width: 55px;
     padding: 10px;
 }
 
@@ -62,15 +62,20 @@ section {
     padding: 1.1em 1.5em;
 }
 
+.search p {
+    display: inline;
+}
+
+input:active,
+input:focus,
+select {
+    outline: 0;
+}
+
 .cards {
     display: flex;
     margin: 10px;
 }
-
-p {
-    display: inline;
-}
-
 /* Page management */
 .back-button {
     display: none;
@@ -82,7 +87,7 @@ p {
     width: 20px;
 }
 
-input:active,
-input:focus {
-    outline: 0;
+/* Not found */
+.not-found {
+    font-size: 25px;
 }
