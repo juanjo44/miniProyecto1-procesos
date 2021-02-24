@@ -3,6 +3,7 @@ const continentCards = document.getElementById("continent-cards");
 
 // Trae algunos elementos que se van a mostrar u ocultar
 const continentsContainer = document.getElementById("continents");
+const logueo = document.getElementById('logueo')
 const backButton = document.getElementById("back-button");
 const send = document.getElementById("search");
 let iniYear = document.getElementById("iniYear");

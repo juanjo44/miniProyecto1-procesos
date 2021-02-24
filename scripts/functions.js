@@ -49,6 +49,11 @@ const cleanScreen = () => {
     backButton.style.display = "flex";
 };
 
+const cleanScreenLogin = () => {
+    logueo.style.display = "none";
+    //backButton.style.display = "flex";
+};
+
 //Procesa los datos de input que se le dieron al filtro
 const dataProcessing = (yi, yf, di, df, pais) => {
     if (pais === "") {
