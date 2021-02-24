@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 80vh;
+    min-height: 85vh;
 }
 
 .banner::before {
@@ -38,6 +38,7 @@
     position: relative;
     font-weight: bold;
     margin-bottom: 100px;
+    margin: 20px 0 100px 0;
 }
 
 .catalogue {
@@ -58,4 +59,36 @@
 
 .catalogue:hover {
     background-color: rgba(250, 250, 250, 0.15);
+}
+
+.featured {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.featured h2 {
+    font-size: 30px;
+}
+
+.featured-coins,
+.featured-bills {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.novelties {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.novelties h2 {
+    font-size: 30px;
+}
+
+.novelties-coins,
+.novelties-bills {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
