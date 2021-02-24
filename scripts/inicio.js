@@ -10,7 +10,7 @@ signInForm.addEventListener('submit', e =>{
     .signInWithEmailAndPassword(email, password)
     .then(userCredential => {
         console.log("Hey");
-        signInForm.reset()
+        signInForm.reset();
     })
 })
 
@@ -20,7 +20,7 @@ auth.onAuthStateChanged(user => {
     if (user){
         cleanScreenLogin();
         agregar.style.display = "flex";
-        console.log('signin')
+        console.log('signin');
     } else{
         cleanScreenAgregar();
         console.log('Sign out')
