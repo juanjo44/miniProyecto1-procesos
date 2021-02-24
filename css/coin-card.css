@@ -48,3 +48,32 @@
 .coin-card-photo img {
     border-radius: 0.25em;
 }
+
+/* Show photos */
+.coin-card .front-photo,
+.coin-card .back-photo {
+    position: absolute;
+    transition: opacity 300ms linear;
+}
+
+.coin-card .front-photo img,
+.coin-card .back-photo img {
+    width: 200px;
+    height: 170px;
+}
+
+.coin-card .front-photo {
+    opacity: 1;
+}
+
+.coin-card .back-photo {
+    opacity: 0;
+}
+
+.coin-card-photo:hover .front-photo {
+    opacity: 0;
+}
+
+.coin-card-photo:hover .back-photo {
+    opacity: 1;
+}
