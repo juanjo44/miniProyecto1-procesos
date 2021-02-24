@@ -52,3 +52,32 @@
 .bill-card-photo img {
     border-radius: 0.25em;
 }
+
+/* Show photos */
+.bill-card .front-photo,
+.bill-card .back-photo {
+    position: absolute;
+    transition: opacity 300ms linear;
+}
+
+.bill-card .front-photo img,
+.bill-card .back-photo img {
+    width: 345px;
+    height: 150px;
+}
+
+.bill-card .front-photo {
+    opacity: 1;
+}
+
+.bill-card .back-photo {
+    opacity: 0;
+}
+
+.bill-card-photo:hover .front-photo {
+    opacity: 0;
+}
+
+.bill-card-photo:hover .back-photo {
+    opacity: 1;
+}
