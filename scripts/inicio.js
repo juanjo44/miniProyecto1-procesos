@@ -1,6 +1,5 @@
 const signInForm = document.querySelector('#signin-form');
 
-
 //Get the information and logging
 signInForm.addEventListener('submit', e =>{
     e.preventDefault();
@@ -11,7 +10,7 @@ signInForm.addEventListener('submit', e =>{
     .signInWithEmailAndPassword(email, password)
     .then(userCredential => {
         console.log("Hey");
-        signInForm.reset()
+        signInForm.reset();
     })
 })
 
@@ -20,8 +19,10 @@ signInForm.addEventListener('submit', e =>{
 auth.onAuthStateChanged(user => {
     if (user){
         cleanScreenLogin();
-        console.log('signin')
+        agregar.style.display = "flex";
+        console.log('signin');
     } else{
+        cleanScreenAgregar();
         console.log('Sign out')
     }
 })

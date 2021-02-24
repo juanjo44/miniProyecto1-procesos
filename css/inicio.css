@@ -34,3 +34,8 @@ button {
     color: white;
     opacity: 0.5;
 }
+
+#agregar {
+    display: flex;
+    flex-direction: row;
+}

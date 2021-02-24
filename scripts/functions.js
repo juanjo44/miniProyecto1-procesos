@@ -54,6 +54,10 @@ const cleanScreenLogin = () => {
     //backButton.style.display = "flex";
 };
 
+const cleanScreenAgregar = () =>{
+    agregar.style.display = "none";
+};
+
 //Procesa los datos de input que se le dieron al filtro
 const dataProcessing = (yi, yf, di, df, pais) => {
     if (pais === "") {
