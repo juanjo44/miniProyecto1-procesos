@@ -36,7 +36,7 @@ const coinCardTemplate = (front, back, country, denomsymbol, denomvalue, year, l
                 <p>${year}</p>
             </div>
         </div>
-        <button class="coin-like">Me gusta</button>
+        <button class="coin-like">Me gusta (${likes})</button>
     </div>
     `;
 };
@@ -79,7 +79,7 @@ const billCardTemplate = (front, back, country, denomsymbol, denomvalue, year, l
                 <p>${year}</p>
             </div>
         </div>
-        <button class="bill-like">Me gusta</button>
+        <button class="bill-like">Me gusta (${likes})</button>
     </div>
     `;
 };
