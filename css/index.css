@@ -1,5 +1,7 @@
 @import url("normalize.css");
 @import url("header-footer.css");
+@import url("coin-card.css");
+@import url("bill-card.css");
 
 .banner {
     position: relative;
@@ -75,6 +77,7 @@
 .featured-bills {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    padding: 30px;
 }
 
 .novelties {
@@ -91,4 +94,5 @@
 .novelties-bills {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    padding: 30px;
 }
