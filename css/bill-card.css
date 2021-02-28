@@ -38,18 +38,34 @@
     margin: 5px;
 }
 
-.bill-like {
-    border: 1px solid #000;
-    border-radius: 0.25em;
-    padding: 0.5em;
-    width: 100%;
-    background-color: transparent;
+.bill-property p {
+    width: 100px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
-.bill-like:hover {
-    background-color: #000;
-    color: #fff;
-    cursor: pointer;
+.bill-barter-like {
+    display: flex;
+    justify-content: space-around;
+    background-color: #eee;
+    border-radius: 0.25em;
+    padding: 10px;
+}
+
+.bill-barter-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.bill-like-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.bill-barter-like button {
+    border: none;
+    background-color: transparent;
 }
 
 .bill-card img,
@@ -58,6 +74,10 @@
     height: 100%;
     display: inline;
     vertical-align: middle;
+}
+
+.bill-barter-like img {
+    width: 20px;
 }
 
 .bill-card-photo img {

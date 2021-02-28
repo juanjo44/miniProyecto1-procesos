@@ -36,7 +36,16 @@ const coinCardTemplate = (id, front, back, country, denomsymbol, denomvalue, yea
                 <p>${year}</p>
             </div>
         </div>
-        <button class="coin-like" data-id="${id}" data-continent="${continent}Coins">Me gusta (${likes})</button>
+        <div class="coin-barter-like">
+            <div class="coin-barter-container">
+                <img src="../images/barter.svg">
+                <button class="coin-barter">${barter}</button>
+            </div>
+            <div class="coin-like-container">
+                <img src="../images/love.svg">
+                <button class="coin-like" data-id="${id}" data-continent="${continent}Coins">${likes}</button>
+            </div>
+        </div>
     </div>
     `;
 };
@@ -79,7 +88,16 @@ const billCardTemplate = (id, front, back, country, denomsymbol, denomvalue, yea
                 <p>${year}</p>
             </div>
         </div>
-        <button class="bill-like" data-id="${id}" data-continent="${continent}Bills">Me gusta (${likes})</button>
+        <div class="bill-barter-like">
+            <div class="bill-barter-container">
+                <img src="../images/barter.svg">
+                <button class="bill-barter">${barter}</button>
+            </div>
+            <div class="bill-like-container">
+                <img src="../images/love.svg">
+                <button class="bill-like" data-id="${id}" data-continent="${continent}Coins">${likes}</button>
+            </div>
+        </div>
     </div>
     `;
 };

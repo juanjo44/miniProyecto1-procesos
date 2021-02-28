@@ -160,25 +160,6 @@ const fillCountryOptions = () => {
     countryOption.innerHTML += fragment;
 };
 
-//Opciones del filtro una vez se incio la sesión para agregar
-const fillCountryOptions2 = () => {
-    const countryOptionCoin = document.getElementById("countriesCoin");
-    countryOptionCoin.innerHTML = `<option value="">Selecciona un país</option>`;
-    let fragmentCoin = "";
-    countriesMap.forEach((c) => {
-        fragmentCoin += `<option value="${c[0]}">${c[0]}</option>`;
-    });
-    countryOptionCoin.innerHTML += fragmentCoin;
-
-    const countryOptionBill = document.getElementById("countriesBill");
-    countryOptionBill.innerHTML = `<option value="">Selecciona un país</option>`;
-    let fragmentBill = "";
-    countriesMap.forEach((c) => {
-        fragmentBill += `<option value="${c[0]}">${c[0]}</option>`;
-    });
-    countryOptionBill.innerHTML += fragmentBill;
-};
-
 // Pinta los datos de los destacados
 const paintFeatured = (featuredCoins, featuredBills) => {
     // Pinta las monedas destacadas

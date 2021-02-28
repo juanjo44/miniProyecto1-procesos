@@ -9,6 +9,17 @@
     padding: 10px;
 }
 
+.coin-card-index {
+    display: grid;
+    grid-template-rows: 170px;
+    grid-template-columns: 200px;
+    width: 200px;
+    height: 275px;
+    border-radius: 0.5em;
+    box-shadow: 1px 1px 10px 0 #ccc;
+    padding: 10px;
+}
+
 .coin-card-data {
     padding: 10px;
 }
@@ -24,25 +35,46 @@
     margin: 5px;
 }
 
-.coin-like {
-    border: 1px solid #000;
+.coin-property p {
+    width: 180px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.coin-barter-like {
+    display: flex;
+    justify-content: space-around;
+    background-color: #eee;
     border-radius: 0.25em;
-    padding: 0.5em;
-    width: 100%;
+    padding: 10px;
+}
+
+.coin-barter-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.coin-like-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.coin-barter-like button {
+    border: none;
     background-color: transparent;
 }
 
-.coin-like:hover {
-    background-color: #000;
-    color: #fff;
-    cursor: pointer;
-}
-
-.coin-card img {
+.coin-card img,
+.coin-card-index img {
     width: 100%;
     height: 100%;
     display: inline;
     vertical-align: middle;
+}
+
+.coin-barter-like img {
+    width: 20px;
 }
 
 .coin-card-photo img {
@@ -51,22 +83,28 @@
 
 /* Show photos */
 .coin-card .front-photo,
-.coin-card .back-photo {
+.coin-card .back-photo,
+.coin-card-index .front-photo,
+.coin-card-index .back-photo {
     position: absolute;
     transition: opacity 300ms linear;
 }
 
 .coin-card .front-photo img,
-.coin-card .back-photo img {
+.coin-card .back-photo img,
+.coin-card-index .front-photo img,
+.coin-card-index .back-photo img {
     width: 200px;
     height: 170px;
 }
 
-.coin-card .front-photo {
+.coin-card .front-photo,
+.coin-card-index .front-photo {
     opacity: 1;
 }
 
-.coin-card .back-photo {
+.coin-card .back-photo,
+.coin-card-index .back-photo {
     opacity: 0;
 }
 
