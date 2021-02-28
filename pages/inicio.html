@@ -71,13 +71,9 @@
                 <div id="agregarBilletes">
                     <form id="addBill-form">
                         <div class="form-group">
-                            <input
-                                type="text"
-                                placeholder="Pais"
-                                id="addCountryBill"
-                                class="form-control"
-                                required
-                            />
+                            <select name="country" id="countriesBill" class="countries">
+                                <option value="">Selecciona un país</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <input
@@ -98,7 +94,10 @@
                             />
                         </div>
                         <div class="mb-3">
-                            <input class="form-control" type="file" id="formFile" accept=".jpg, .jpeg, .png">
+                            <input class="form-control" type="file" id="formFileFrontBill" accept=".jpg, .jpeg, .png">
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" type="file" id="formFileBackBill" accept=".jpg, .jpeg, .png">
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Agregar Billete</button>
@@ -107,13 +106,9 @@
                 <div id="agregarMonedas">
                     <form id="addCoin-form">
                         <div class="form-group">
-                            <input
-                                type="text"
-                                placeholder="Pais"
-                                id="addCountryCoin"
-                                class="form-control"
-                                required
-                            />
+                            <select name="country" id="countriesCoin" class="countries">
+                                <option value="">Selecciona un país</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <input
@@ -134,7 +129,10 @@
                             />
                         </div>
                         <div class="mb-3">
-                            <input class="form-control" type="file" id="formFile"  accept=".jpg, .jpeg, .png">
+                            <input class="form-control" type="file" id="formFileFrontCoin"  accept=".jpg, .jpeg, .png">
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" type="file" id="formFileBackCoin" accept=".jpg, .jpeg, .png">
                         </div>
                         <button type="submit" class="btn btn-primary">Agregar Moneda</button>
                     </form>
@@ -182,6 +180,7 @@
             integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
             crossorigin="anonymous"
         ></script>
+        <script src="../scripts/structures.js"></script>
         <script src="../scripts/functions.js"></script>
         <script src="../scripts/inicio.js"></script>
     </body>
