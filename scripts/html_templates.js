@@ -1,5 +1,5 @@
 // Template de un coin-card
-const coinCardTemplate = (front, back, country, denomsymbol, denomvalue, year, likes, barter) => {
+const coinCardTemplate = (id, front, back, country, denomsymbol, denomvalue, year, likes, barter) => {
     return `
     <div class="coin-card">
         <div class="coin-card-photo">
@@ -36,13 +36,13 @@ const coinCardTemplate = (front, back, country, denomsymbol, denomvalue, year, l
                 <p>${year}</p>
             </div>
         </div>
-        <button class="coin-like">Me gusta (${likes})</button>
+        <button class="coin-like" onclick="addLike(${id})">Me gusta (${likes})</button>
     </div>
     `;
 };
 
 // Template de un bill-card
-const billCardTemplate = (front, back, country, denomsymbol, denomvalue, year, likes, barter) => {
+const billCardTemplate = (id, front, back, country, denomsymbol, denomvalue, year, likes, barter) => {
     return `
     <div class="bill-card">
         <div class="bill-card-photo">
@@ -79,7 +79,7 @@ const billCardTemplate = (front, back, country, denomsymbol, denomvalue, year, l
                 <p>${year}</p>
             </div>
         </div>
-        <button class="bill-like">Me gusta (${likes})</button>
+        <button class="bill-like" onclick="addLike(${id})">Me gusta (${likes})</button>
     </div>
     `;
 };

@@ -1,4 +1,4 @@
-// Pinta los datos
+// Pinta los datos de cada categoría
 const categorize = (coinQuery, billQuery) => {
     let countries = {},
         fragment = "";
@@ -9,6 +9,7 @@ const categorize = (coinQuery, billQuery) => {
             countries[doc.data().country] = ["", ""];
         }
         countries[doc.data().country][0] += coinCardTemplate(
+            doc.id,
             doc.data().front,
             doc.data().back,
             countriesMap[doc.data().country][0],
@@ -18,6 +19,7 @@ const categorize = (coinQuery, billQuery) => {
             doc.data().likes,
             doc.data().barter
         );
+        console.log(doc.id);
     });
 
     // Categoriza los billetes por país
@@ -26,6 +28,7 @@ const categorize = (coinQuery, billQuery) => {
             countries[doc.data().country] = ["", ""];
         }
         countries[doc.data().country][1] += billCardTemplate(
+            doc.id,
             doc.data().front,
             doc.data().back,
             countriesMap[doc.data().country][0],
@@ -54,7 +57,7 @@ const cleanScreenLogin = () => {
     //backButton.style.display = "flex";
 };
 
-const cleanScreenAgregar = () =>{
+const cleanScreenAgregar = () => {
     agregar.style.display = "none";
 };
 
@@ -106,6 +109,7 @@ const filter = (coinQuery, billQuery, ans) => {
             }
             //console.log(doc.data());
             countries[doc.data().country][0] += coinCardTemplate(
+                doc.id,
                 doc.data().front,
                 doc.data().back,
                 countriesMap[doc.data().country][0],
@@ -131,6 +135,7 @@ const filter = (coinQuery, billQuery, ans) => {
                 countries[doc.data().country] = ["", ""];
             }
             countries[doc.data().country][1] += billCardTemplate(
+                doc.id,
                 doc.data().front,
                 doc.data().back,
                 countriesMap[doc.data().country][0],
@@ -151,6 +156,7 @@ const filter = (coinQuery, billQuery, ans) => {
     continentCards.innerHTML = fragment != "" ? fragment : notFoundTemplate();
 };
 
+// LLena las opciones de país en el filtro
 const fillCountryOptions = () => {
     const countryOption = document.getElementById("country");
     countryOption.innerHTML = `<option value="">Selecciona un país</option>`;
@@ -160,3 +166,46 @@ const fillCountryOptions = () => {
     });
     countryOption.innerHTML += fragment;
 };
+
+// Pinta los datos de los destacados
+const paintFeatured = (featuredCoins, featuredBills) => {
+    // Pinta las monedas destacadas
+    let fragment = "";
+    featuredCoins.forEach((doc) => {
+        fragment += coinCardTemplate(
+            doc.id,
+            doc.data().front,
+            doc.data().back,
+            countriesMap[doc.data().country][0],
+            doc.data().denomsymbol,
+            doc.data().denomvalue,
+            doc.data().year,
+            doc.data().likes,
+            doc.data().barter
+        );
+    });
+    featuredCoinsContainer.innerHTML = fragment;
+    // Pinta los billetes destacados
+    fragment = "";
+    featuredBills.forEach((doc) => {
+        fragment += billCardTemplate(
+            doc.id,
+            doc.data().front,
+            doc.data().back,
+            countriesMap[doc.data().country][0],
+            doc.data().denomsymbol,
+            doc.data().denomvalue,
+            doc.data().year,
+            doc.data().likes,
+            doc.data().barter
+        );
+    });
+    featuredBillsContainer.innerHTML = fragment;
+};
+
+// Agregar un like a un elemento en particular
+const addLike = (id) => {
+    console.log(id);
+};
+
+// TODO: ACTUALIZAR LA COLECCIÓN DE DESTACADOS

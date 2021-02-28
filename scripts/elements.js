@@ -3,8 +3,8 @@ const continentCards = document.getElementById("continent-cards");
 
 // Trae algunos elementos que se van a mostrar u ocultar
 const continentsContainer = document.getElementById("continents");
-const logueo = document.getElementById('logueo')
-const agregar = document.getElementById('agregar')
+const logueo = document.getElementById("logueo");
+const agregar = document.getElementById("agregar");
 const backButton = document.getElementById("back-button");
 const send = document.getElementById("search");
 let iniYear = document.getElementById("iniYear");
@@ -20,3 +20,7 @@ const antartica = document.getElementById("antartica");
 const asia = document.getElementById("asia");
 const europe = document.getElementById("europe");
 const oceania = document.getElementById("oceania");
+
+// Trae los elementos de destacados
+const featuredCoinsContainer = document.getElementById("featured-coins");
+const featuredBillsContainer = document.getElementById("featured-bills");
