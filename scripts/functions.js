@@ -18,7 +18,7 @@ const categorize = (coinQuery, billQuery, continent) => {
             doc.data().year,
             doc.data().likes,
             doc.data().barter,
-            continent
+            countriesMap[doc.data().country][1].toLowerCase()
         );
     });
 
@@ -37,7 +37,7 @@ const categorize = (coinQuery, billQuery, continent) => {
             doc.data().year,
             doc.data().likes,
             doc.data().barter,
-            continent
+            countriesMap[doc.data().country][1].toLowerCase()
         );
     });
 
@@ -114,7 +114,7 @@ const filter = (coinQuery, billQuery, ans) => {
                 doc.data().year,
                 doc.data().likes,
                 doc.data().barter,
-                continent
+                countriesMap[doc.data().country][1].toLowerCase()
             );
         }
     });
@@ -135,7 +135,7 @@ const filter = (coinQuery, billQuery, ans) => {
                 doc.data().year,
                 doc.data().likes,
                 doc.data().barter,
-                continent
+                countriesMap[doc.data().country][1].toLowerCase()
             );
         }
     });
@@ -184,7 +184,7 @@ const paintFeatured = (featuredCoins, featuredBills) => {
     // Pinta las monedas destacadas
     let fragment = "";
     featuredCoins.forEach((doc) => {
-        fragment += coinCardTemplate(
+        fragment += coinCardTemplateIndex(
             doc.id,
             doc.data().front,
             doc.data().back,
@@ -194,14 +194,14 @@ const paintFeatured = (featuredCoins, featuredBills) => {
             doc.data().year,
             doc.data().likes,
             doc.data().barter,
-            continent
+            countriesMap[doc.data().country][1].toLowerCase()
         );
     });
     featuredCoinsContainer.innerHTML = fragment;
     // Pinta los billetes destacados
     fragment = "";
     featuredBills.forEach((doc) => {
-        fragment += billCardTemplate(
+        fragment += billCardTemplateIndex(
             doc.id,
             doc.data().front,
             doc.data().back,
@@ -211,7 +211,7 @@ const paintFeatured = (featuredCoins, featuredBills) => {
             doc.data().year,
             doc.data().likes,
             doc.data().barter,
-            continent
+            countriesMap[doc.data().country][1].toLowerCase()
         );
     });
     featuredBillsContainer.innerHTML = fragment;
@@ -223,6 +223,40 @@ const getDocument = (id, collection) => db.collection(collection).doc(id).get();
 
 // Actualiza el document desde un id con unos datos nuevos
 const updateDocument = (id, newData, collection) => db.collection(collection).doc(id).update(newData);
+
+const updateFeatured = (ultimo, nuevo, collection) => {
+    //Se borra el más antiguo (primero en asc)
+    db.collection(collection)
+        .doc(ultimo.id)
+        .delete()
+        .then(() => {
+            console.log("Document successfully deleted!");
+        })
+        .catch((error) => {
+            console.error("Error removing document: ", error);
+        });
+    //Se añade el que se acaba de crear
+    db.collection(collection)
+        .doc(nuevo.id)
+        .set({
+            ID: nuevo.data().ID,
+            back: nuevo.data().back,
+            barter: nuevo.data().barter,
+            country: nuevo.data().country,
+            created: nuevo.data().created,
+            denomsymbol: nuevo.data().denomsymbol,
+            denomvalue: nuevo.data().denomvalue,
+            front: nuevo.data().front,
+            likes: nuevo.data().likes,
+            year: nuevo.data().year,
+        })
+        .then(() => {
+            console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+};
 
 // Eventos de like
 const setLike = () => {
@@ -236,6 +270,12 @@ const setLike = () => {
             const doc = await getDocument(e.target.dataset.id, e.target.dataset.continent);
             const i = doc.data().likes + 1;
             updateDocument(doc.id, {likes: i}, e.target.dataset.continent);
+
+            // Para actualizar los destacados
+            const featuredCoins = db.collection("featuredCoins").orderBy("likes", "asc").limit(1).get();
+            if (featuredCoins.data().likes < i) {
+                updateFeatured(featuredCoins, doc, "featuredCoins");
+            }
         });
     });
 
@@ -245,6 +285,12 @@ const setLike = () => {
             const doc = await getDocument(e.target.dataset.id, e.target.dataset.continent);
             const i = doc.data().likes + 1;
             updateDocument(doc.id, {likes: i}, e.target.dataset.continent);
+
+            // Para actualizar los destacados
+            const featuredBills = db.collection("featuredBills").orderBy("likes", "asc").limit(1).get();
+            if (featuredBills.data().likes < i) {
+                updateFeatured(featuredBills, doc, "featuredBills");
+            }
         });
     });
 };
