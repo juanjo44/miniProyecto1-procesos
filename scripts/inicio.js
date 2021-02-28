@@ -20,6 +20,7 @@ auth.onAuthStateChanged(user => {
     if (user){
         cleanScreenLogin();
         agregar.style.display = "flex";
+        fillCountryOptions2()
         console.log('signin');
     } else{
         cleanScreenAgregar();

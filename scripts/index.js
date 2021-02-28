@@ -91,6 +91,5 @@ const updateRecentCoins = (nuevo) => {
     })
     .catch((error) => {
         console.error("Error writing document: ", error);
-    });
-        
+    });     
 };

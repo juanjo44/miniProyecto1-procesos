@@ -91,11 +91,7 @@ search.addEventListener("click", async (e) => {
             collectionCoins = await getEuropeCoins();
             collectionBills = await getEuropeBills();
             break;
-        case "North America":
-            collectionCoins = await getAmericaCoins();
-            collectionBills = await getAmericaBills();
-            break;
-        case "South America":
+        case "America":
             collectionCoins = await getAmericaCoins();
             collectionBills = await getAmericaBills();
             break;
