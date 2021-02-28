@@ -248,3 +248,8 @@ const setLike = () => {
         });
     });
 };
+
+
+const addNewElement = () =>{
+    
+}
