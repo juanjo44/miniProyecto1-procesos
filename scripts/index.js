@@ -10,7 +10,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
     const featuredBills = await getFeaturedBills();
     paintFeatured(featuredCoins, featuredBills);
 });
-<<<<<<< HEAD
+
 
 const searchCoins = (africa, america, antartica, asia, europe, oceania) => {
     console.log("Las 4 monedas con más likes");
@@ -94,5 +94,3 @@ const updateRecentCoins = (nuevo) => {
     });
         
 };
-=======
->>>>>>> a8e17e795174312d755638e9a120b70f239bc65c
