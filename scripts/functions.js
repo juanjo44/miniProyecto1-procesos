@@ -1,5 +1,5 @@
 // Pinta los datos de cada categoría
-const categorize = (coinQuery, billQuery) => {
+const categorize = (coinQuery, billQuery, continent) => {
     let countries = {},
         fragment = "";
 
@@ -17,9 +17,9 @@ const categorize = (coinQuery, billQuery) => {
             doc.data().denomvalue,
             doc.data().year,
             doc.data().likes,
-            doc.data().barter
+            doc.data().barter,
+            continent
         );
-        console.log(doc.id);
     });
 
     // Categoriza los billetes por país
@@ -36,7 +36,8 @@ const categorize = (coinQuery, billQuery) => {
             doc.data().denomvalue,
             doc.data().year,
             doc.data().likes,
-            doc.data().barter
+            doc.data().barter,
+            continent
         );
     });
 
@@ -44,6 +45,7 @@ const categorize = (coinQuery, billQuery) => {
         fragment += countryTemplate(countriesMap[c][0], countries[c][0], countries[c][1]);
     }
     continentCards.innerHTML = fragment != "" ? fragment : notFoundTemplate();
+    setLike();
 };
 
 // Limpia la pantalla para mostrar la información de un continente
@@ -97,13 +99,7 @@ const filter = (coinQuery, billQuery, ans) => {
 
     // Categoriza las monedas por país
     coinQuery.forEach((doc) => {
-        if (
-            countriesMap[doc.data().country][0] === pais &&
-            di <= doc.data().denomvalue &&
-            doc.data().denomvalue <= df &&
-            yi <= doc.data().year &&
-            doc.data().year <= yf
-        ) {
+        if (countriesMap[doc.data().country][0] === pais && di <= doc.data().denomvalue && doc.data().denomvalue <= df && yi <= doc.data().year && doc.data().year <= yf) {
             if (countries[doc.data().country] === undefined) {
                 countries[doc.data().country] = ["", ""];
             }
@@ -117,20 +113,15 @@ const filter = (coinQuery, billQuery, ans) => {
                 doc.data().denomvalue,
                 doc.data().year,
                 doc.data().likes,
-                doc.data().barter
+                doc.data().barter,
+                continent
             );
         }
     });
 
     // Categoriza los billetes por país
     billQuery.forEach((doc) => {
-        if (
-            countriesMap[doc.data().country][0] === pais &&
-            di <= doc.data().denomvalue &&
-            doc.data().denomvalue <= df &&
-            yi <= doc.data().year &&
-            doc.data().year <= yf
-        ) {
+        if (countriesMap[doc.data().country][0] === pais && di <= doc.data().denomvalue && doc.data().denomvalue <= df && yi <= doc.data().year && doc.data().year <= yf) {
             if (countries[doc.data().country] == undefined) {
                 countries[doc.data().country] = ["", ""];
             }
@@ -143,7 +134,8 @@ const filter = (coinQuery, billQuery, ans) => {
                 doc.data().denomvalue,
                 doc.data().year,
                 doc.data().likes,
-                doc.data().barter
+                doc.data().barter,
+                continent
             );
         }
     });
@@ -154,6 +146,7 @@ const filter = (coinQuery, billQuery, ans) => {
 
     cleanScreen();
     continentCards.innerHTML = fragment != "" ? fragment : notFoundTemplate();
+    setLike();
 };
 
 // LLena las opciones de país en el filtro
@@ -181,7 +174,8 @@ const paintFeatured = (featuredCoins, featuredBills) => {
             doc.data().denomvalue,
             doc.data().year,
             doc.data().likes,
-            doc.data().barter
+            doc.data().barter,
+            continent
         );
     });
     featuredCoinsContainer.innerHTML = fragment;
@@ -197,15 +191,41 @@ const paintFeatured = (featuredCoins, featuredBills) => {
             doc.data().denomvalue,
             doc.data().year,
             doc.data().likes,
-            doc.data().barter
+            doc.data().barter,
+            continent
         );
     });
     featuredBillsContainer.innerHTML = fragment;
+    setLike();
 };
 
-// Agregar un like a un elemento en particular
-const addLike = (id) => {
-    console.log(id);
-};
+// Obtiene el documento desde un id específico
+const getDocument = (id, collection) => db.collection(collection).doc(id).get();
 
-// TODO: ACTUALIZAR LA COLECCIÓN DE DESTACADOS
+// Actualiza el document desde un id con unos datos nuevos
+const updateDocument = (id, newData, collection) => db.collection(collection).doc(id).update(newData);
+
+// Eventos de like
+const setLike = () => {
+    // Los botones de like
+    const coinLike = document.querySelectorAll(".coin-like");
+    const billLike = document.querySelectorAll(".bill-like");
+
+    // Evento de click para cada botón de like de monedas
+    coinLike.forEach((likeButton) => {
+        likeButton.addEventListener("click", async (e) => {
+            const doc = await getDocument(e.target.dataset.id, e.target.dataset.continent);
+            const i = doc.data().likes + 1;
+            updateDocument(doc.id, {likes: i}, e.target.dataset.continent);
+        });
+    });
+
+    // Evento de click para cada botón de like de billetes
+    billLike.forEach((likeButton) => {
+        likeButton.addEventListener("click", async (e) => {
+            const doc = await getDocument(e.target.dataset.id, e.target.dataset.continent);
+            const i = doc.data().likes + 1;
+            updateDocument(doc.id, {likes: i}, e.target.dataset.continent);
+        });
+    });
+};

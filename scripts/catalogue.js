@@ -22,42 +22,42 @@ africa.addEventListener("click", async (e) => {
     const coinQuery = await getAfricaCoins();
     const billQuery = await getAfricaBills();
     cleanScreen();
-    categorize(coinQuery, billQuery);
+    categorize(coinQuery, billQuery, "africa");
 });
 
 america.addEventListener("click", async (e) => {
     const coinQuery = await getAmericaCoins();
     const billQuery = await getAmericaBills();
     cleanScreen();
-    categorize(coinQuery, billQuery);
+    categorize(coinQuery, billQuery, "america");
 });
 
 antartica.addEventListener("click", async (e) => {
     const coinQuery = await getAntarticaCoins();
     const billQuery = await getAntarticaBills();
     cleanScreen();
-    categorize(coinQuery, billQuery);
+    categorize(coinQuery, billQuery, "antartica");
 });
 
 asia.addEventListener("click", async (e) => {
     const coinQuery = await getAsiaCoins();
     const billQuery = await getAsiaBills();
     cleanScreen();
-    categorize(coinQuery, billQuery);
+    categorize(coinQuery, billQuery, "asia");
 });
 
 europe.addEventListener("click", async (e) => {
     const coinQuery = await getEuropeCoins();
     const billQuery = await getEuropeBills();
     cleanScreen();
-    categorize(coinQuery, billQuery);
+    categorize(coinQuery, billQuery, "europe");
 });
 
 oceania.addEventListener("click", async (e) => {
     const coinQuery = await getOceaniaCoins();
     const billQuery = await getOceaniaBills();
     cleanScreen();
-    categorize(coinQuery, billQuery);
+    categorize(coinQuery, billQuery, "oceania");
 });
 
 // Limpia la pantalla para volver al menú
