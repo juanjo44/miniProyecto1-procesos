@@ -15,7 +15,7 @@ signInForm.addEventListener('submit', e =>{
     })
 })
 
-addNewBill.addEventListener('submit', e => {
+addNewBill.addEventListener('submit', async (e) => {
 
     e.preventDefault();
     const country = document.querySelector('#countriesBill').value;
@@ -23,11 +23,11 @@ addNewBill.addEventListener('submit', e => {
     const den = document.querySelector('#addDenBill').value;
     const front = document.querySelector('#formFileFrontBill').files[0];
     const back = document.querySelector('#formFileBackBill').files[0];
-    addNewElement(country, year, den, front, back);
+    addNewElement(country, year, den, front, back, "B");
     console.log(country, year, den, front, back);
 })
 
-addNewCoin.addEventListener('submit', e => {
+addNewCoin.addEventListener('submit', async (e) => {
     e.preventDefault();
     const country = document.querySelector('#countriesCoin').value;
     const year = document.querySelector('#addYearCoin').value;
@@ -35,7 +35,7 @@ addNewCoin.addEventListener('submit', e => {
     const front = document.querySelector('#formFileFrontCoin').files[0];
     const back = document.querySelector('#formFileBackCoin').files[0];
 
-    addNewElement(country, year, den, front, back);
+    addNewElement(country, year, den, front, back,"C");
     console.log(country, year, den, front, back);
 })
 
