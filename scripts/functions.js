@@ -48,6 +48,51 @@ const categorize = (coinQuery, billQuery, continent) => {
     setLike();
 };
 
+// Pinta los datos de Colombia
+const paintColombia = (coinQuery, billQuery) => {
+    let coinFragment = "",
+        billFragment = "",
+        fragment = "";
+
+    coinQuery.forEach((doc) => {
+        if (doc.data().country === 46) {
+            coinFragment += coinCardTemplate(
+                doc.id,
+                doc.data().front,
+                doc.data().back,
+                countriesMap[doc.data().country][0],
+                doc.data().denomsymbol,
+                doc.data().denomvalue,
+                doc.data().year,
+                doc.data().likes,
+                doc.data().barter,
+                countriesMap[doc.data().country][1].toLowerCase()
+            );
+        }
+    });
+
+    billQuery.forEach((doc) => {
+        if (doc.data().country === 46) {
+            billFragment += billCardTemplate(
+                doc.id,
+                doc.data().front,
+                doc.data().back,
+                countriesMap[doc.data().country][0],
+                doc.data().denomsymbol,
+                doc.data().denomvalue,
+                doc.data().year,
+                doc.data().likes,
+                doc.data().barter,
+                countriesMap[doc.data().country][1].toLowerCase()
+            );
+        }
+    });
+
+    fragment = countryTemplate("Colombia", coinFragment, billFragment);
+    continentCards.innerHTML = fragment != "" ? fragment : notFoundTemplate();
+    setLike();
+};
+
 // Limpia la pantalla para mostrar la información de un continente
 const cleanScreen = () => {
     continentsContainer.style.display = "none";
@@ -276,7 +321,4 @@ const setLike = () => {
     });
 };
 
-
-const addNewElement = () =>{
-    
-}
+const addNewElement = () => {};

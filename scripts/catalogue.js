@@ -60,6 +60,13 @@ oceania.addEventListener("click", async (e) => {
     categorize(coinQuery, billQuery, "oceania");
 });
 
+colombia.addEventListener("click", async (e) => {
+    const coinQuery = await getAmericaCoins();
+    const billQuery = await getAmericaBills();
+    cleanScreen();
+    paintColombia(coinQuery, billQuery);
+});
+
 // Limpia la pantalla para volver al menú
 backButton.addEventListener("click", (e) => {
     continentsContainer.style.display = "grid";

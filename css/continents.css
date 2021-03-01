@@ -1,12 +1,16 @@
 /* Continents */
 .continents {
     width: 80vw;
-    height: 60vh;
+    height: 100vh;
     margin: 20px;
     display: grid;
     grid-gap: 1px;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: 2fr repeat(2, 1fr);
+    grid-template-areas:
+        "colombia colombia colombia"
+        "africa america antartica"
+        "asia europe oceania";
 }
 
 .continents div {
@@ -31,7 +35,8 @@
 .antartica::before,
 .asia::before,
 .europe::before,
-.oceania::before {
+.oceania::before,
+.colombia::before {
     content: "";
     background-color: rgba(0, 0, 0, 1);
     background-size: cover;
@@ -66,12 +71,39 @@
     background-image: url("../images/oceania.png");
 }
 
+.colombia::before {
+    background-image: url("../images/colombia.png");
+}
+
 .africa p,
 .america p,
 .antartica p,
 .asia p,
 .europe p,
-.oceania p {
+.oceania p,
+.colombia p {
     position: relative;
     transition: transform 1s;
+}
+
+.africa {
+    grid-area: africa;
+}
+.america {
+    grid-area: america;
+}
+.antartica {
+    grid-area: antartica;
+}
+.asia {
+    grid-area: asia;
+}
+.europe {
+    grid-area: europe;
+}
+.oceania {
+    grid-area: oceania;
+}
+.colombia {
+    grid-area: colombia;
 }

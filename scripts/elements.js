@@ -20,6 +20,7 @@ const antartica = document.getElementById("antartica");
 const asia = document.getElementById("asia");
 const europe = document.getElementById("europe");
 const oceania = document.getElementById("oceania");
+const colombia = document.getElementById("colombia");
 
 // Trae los elementos de destacados
 const featuredCoinsContainer = document.getElementById("featured-coins");
