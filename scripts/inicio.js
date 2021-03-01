@@ -21,21 +21,21 @@ addNewBill.addEventListener('submit', e => {
     const country = document.querySelector('#countriesBill').value;
     const year = document.querySelector('#addYearBill').value;
     const den = document.querySelector('#addDenBill').value;
-    const front = document.querySelector('#formFileFrontBill').value;
-    const back = document.querySelector('#formFileBackBill').value;
-
+    const front = document.querySelector('#formFileFrontBill').files[0];
+    const back = document.querySelector('#formFileBackBill').files[0];
+    addNewElement(country, year, den, front, back);
     console.log(country, year, den, front, back);
 })
 
 addNewCoin.addEventListener('submit', e => {
-
     e.preventDefault();
     const country = document.querySelector('#countriesCoin').value;
     const year = document.querySelector('#addYearCoin').value;
     const den = document.querySelector('#addDenCoin').value;
-    const front = document.querySelector('#formFileFrontCoin').value;
-    const back = document.querySelector('#formFileBackCoin').value;
+    const front = document.querySelector('#formFileFrontCoin').files[0];
+    const back = document.querySelector('#formFileBackCoin').files[0];
 
+    addNewElement(country, year, den, front, back);
     console.log(country, year, den, front, back);
 })
 
@@ -45,7 +45,7 @@ auth.onAuthStateChanged(user => {
     if (user){
         cleanScreenLogin();
         agregar.style.display = "flex";
-        fillCountryOptions2()
+        fillCountryOptions2();
     } else{
         cleanScreenAgregar();
     }

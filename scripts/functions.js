@@ -205,6 +205,23 @@ const fillCountryOptions = () => {
     countryOption.innerHTML += fragment;
 };
 
+const fillCountryOptions2 = () => {
+    const countryOptionBill = document.getElementById("countriesBill");
+    countryOptionBill.innerHTML = `<option value="">Selecciona un país</option>`;
+    let fragmentBill = "";
+    countriesMap.forEach((c) => {
+        fragmentBill += `<option value="${c[0]}">${c[0]}</option>`;
+    });
+    countryOptionBill.innerHTML += fragmentBill;
+
+    const countryOptionCoin= document.getElementById("countriesCoin");
+    countryOptionCoin.innerHTML = `<option value="">Selecciona un país</option>`;
+    let fragmentCoin = "";
+    countriesMap.forEach((c) => {
+        fragmentCoin += `<option value="${c[0]}">${c[0]}</option>`;
+    });
+    countryOptionCoin.innerHTML += fragmentCoin;
+};
 // Pinta los datos de los destacados
 const paintFeatured = (featuredCoins, featuredBills) => {
     // Pinta las monedas destacadas
@@ -321,4 +338,26 @@ const setLike = () => {
     });
 };
 
-const addNewElement = () => {};
+const addNewElement = (country, year, den, front, back) => {
+    const refFront = firebase.storage().ref();
+    const refBack = firebase.storage().ref();
+
+    const nameFileFront =`${new Date()}_${front.name}`;
+    const nameFileBack = `${new Date()}_${back.name}`;
+    const metadata = {
+        contentType:File.type
+    }
+    const taskFront = refFront.child(nameFileFront).put(front, metadata);
+    const taskBack = refBack.child(nameFileBack).put(back, metadata);
+    taskFront
+    .then(snapshot => snapshot.ref.getDownloadURL())
+    .then(url => {
+        console.log(url)
+    })
+
+    taskBack
+    .then(snapshot => snapshot.ref.getDownloadURL())
+    .then(url => {
+        console.log(url)
+    })
+};
