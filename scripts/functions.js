@@ -241,7 +241,44 @@ const paintFeatured = (featuredCoins, featuredBills) => {
         );
     });
     featuredBillsContainer.innerHTML = fragment;
-    setLike();
+};
+
+// Pinta los datos de los nuevos
+const paintRecent = (recentCoins, recentBills) => {
+    // Pinta las monedas nuevas
+    let fragment = "";
+    recentCoins.forEach((doc) => {
+        fragment += coinCardTemplateIndex(
+            doc.id,
+            doc.data().front,
+            doc.data().back,
+            countriesMap[doc.data().country][0],
+            doc.data().denomsymbol,
+            doc.data().denomvalue,
+            doc.data().year,
+            doc.data().likes,
+            doc.data().barter,
+            countriesMap[doc.data().country][1].toLowerCase()
+        );
+    });
+    recentCoinsContainer.innerHTML = fragment;
+    // Pinta los billetes nuevos
+    fragment = "";
+    recentBills.forEach((doc) => {
+        fragment += billCardTemplateIndex(
+            doc.id,
+            doc.data().front,
+            doc.data().back,
+            countriesMap[doc.data().country][0],
+            doc.data().denomsymbol,
+            doc.data().denomvalue,
+            doc.data().year,
+            doc.data().likes,
+            doc.data().barter,
+            countriesMap[doc.data().country][1].toLowerCase()
+        );
+    });
+    recentBillsContainer.innerHTML = fragment;
 };
 
 // Obtiene el documento desde un id específico
@@ -250,9 +287,10 @@ const getDocument = (id, collection) => db.collection(collection).doc(id).get();
 // Actualiza el document desde un id con unos datos nuevos
 const updateDocument = (id, newData, collection) => db.collection(collection).doc(id).update(newData);
 
-const updateFeatured = (ultimo, nuevo, collection) => {
+const updateFeatured = async (ultimo, nuevo, collection) => {
     //Se borra el más antiguo (primero en asc)
-    db.collection(collection)
+    await db
+        .collection(collection)
         .doc(ultimo.id)
         .delete()
         .then(() => {
@@ -262,7 +300,8 @@ const updateFeatured = (ultimo, nuevo, collection) => {
             console.error("Error removing document: ", error);
         });
     //Se añade el que se acaba de crear
-    db.collection(collection)
+    await db
+        .collection(collection)
         .doc(nuevo.id)
         .set({
             ID: nuevo.data().ID,
@@ -295,13 +334,22 @@ const setLike = () => {
         likeButton.addEventListener("click", async (e) => {
             const doc = await getDocument(e.target.dataset.id, e.target.dataset.continent);
             const i = doc.data().likes + 1;
-            updateDocument(doc.id, {likes: i}, e.target.dataset.continent);
+            await updateDocument(doc.id, {likes: i}, e.target.dataset.continent);
 
             // Para actualizar los destacados
-            const featuredCoins = db.collection("featuredCoins").orderBy("likes", "asc").limit(1).get();
-            if (featuredCoins.data().likes < i) {
-                updateFeatured(featuredCoins, doc, "featuredCoins");
-            }
+            const featuredC = await db
+                .collection("featuredCoins")
+                .orderBy("likes", "asc")
+                .limit(1)
+                .get()
+                .then((snapshot) => {
+                    snapshot.docs.forEach(async (featuredCoins) => {
+                        await updateDocument(featuredCoins.id, {likes: i}, "featuredCoins");
+                        if (featuredCoins.data().likes < i) {
+                            updateFeatured(featuredCoins, doc, "featuredCoins");
+                        }
+                    });
+                });
         });
     });
 
@@ -310,13 +358,22 @@ const setLike = () => {
         likeButton.addEventListener("click", async (e) => {
             const doc = await getDocument(e.target.dataset.id, e.target.dataset.continent);
             const i = doc.data().likes + 1;
-            updateDocument(doc.id, {likes: i}, e.target.dataset.continent);
+            await updateDocument(doc.id, {likes: i}, e.target.dataset.continent);
 
             // Para actualizar los destacados
-            const featuredBills = db.collection("featuredBills").orderBy("likes", "asc").limit(1).get();
-            if (featuredBills.data().likes < i) {
-                updateFeatured(featuredBills, doc, "featuredBills");
-            }
+            const featuredB = await db
+                .collection("featuredBills")
+                .orderBy("likes", "asc")
+                .limit(1)
+                .get()
+                .then((snapshot) => {
+                    snapshot.docs.forEach(async (featuredBills) => {
+                        await updateDocument(featuredBills.id, {likes: i}, "featuredBills");
+                        if (featuredBills.data().likes < i) {
+                            updateFeatured(featuredBills, doc, "featuredBills");
+                        }
+                    });
+                });
         });
     });
 };

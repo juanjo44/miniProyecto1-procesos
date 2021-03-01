@@ -25,3 +25,10 @@ const colombia = document.getElementById("colombia");
 // Trae los elementos de destacados
 const featuredCoinsContainer = document.getElementById("featured-coins");
 const featuredBillsContainer = document.getElementById("featured-bills");
+
+// Trae los elementos de las novedades
+const recentCoinsContainer = document.getElementById("recent-coins");
+const recentBillsContainer = document.getElementById("recent-bills");
+
+// Base de datos
+const db = firebase.firestore();

@@ -1,6 +1,3 @@
-// Trae la base de datos
-const db = firebase.firestore();
-
 // Trae los datos desde las colecciones de Firebase
 const getAfricaCoins = () => db.collection("africaCoins").get();
 const getAfricaBills = () => db.collection("africaBills").get();

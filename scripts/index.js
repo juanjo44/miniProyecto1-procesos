@@ -1,14 +1,16 @@
-// Trae la base de datos
-const db = firebase.firestore();
-
 // Trae los datos desde las colecciones de Firebase
 const getFeaturedCoins = () => db.collection("featuredCoins").get();
 const getFeaturedBills = () => db.collection("featuredBills").get();
+const getRecentCoins = () => db.collection("recentCoins").get();
+const getRecentBills = () => db.collection("recentBills").get();
 
 window.addEventListener("DOMContentLoaded", async (e) => {
     const featuredCoins = await getFeaturedCoins();
     const featuredBills = await getFeaturedBills();
+    const recentCoins = await getRecentCoins();
+    const recentBills = await getRecentBills();
     paintFeatured(featuredCoins, featuredBills);
+    paintRecent(recentCoins, recentBills);
 });
 
 // Actualizar los billetes más recientes
