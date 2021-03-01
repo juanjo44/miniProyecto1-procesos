@@ -9,23 +9,40 @@
 
 .description {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding-top: 65px;
+    padding-top: 20px;
+    width: 40vw;
 }
 
 .details {
-    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .details h2 {
+    color: #222;
     font-size: 2.7em;
+    margin: 20px 0 0 0;
 }
 
 .details p {
+    color: #555;
     font-size: 1.3em;
+    margin: 20px 0;
+    text-align: center;
 }
 
 .details a {
-    color: #555;
+    color: #999;
+}
+
+.description img {
+    box-shadow: none;
+    border: 2px solid #777;
+    border-radius: 50%;
+    width: 15vw;
 }
