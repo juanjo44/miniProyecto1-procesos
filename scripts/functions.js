@@ -214,7 +214,7 @@ const fillCountryOptions2 = () => {
     });
     countryOptionBill.innerHTML += fragmentBill;
 
-    const countryOptionCoin= document.getElementById("countriesCoin");
+    const countryOptionCoin = document.getElementById("countriesCoin");
     countryOptionCoin.innerHTML = `<option value="">Selecciona un país</option>`;
     let fragmentCoin = "";
     countriesMap.forEach((c) => {
@@ -399,22 +399,22 @@ const addNewElement = (country, year, den, front, back) => {
     const refFront = firebase.storage().ref();
     const refBack = firebase.storage().ref();
 
-    const nameFileFront =`${new Date()}_${front.name}`;
+    const nameFileFront = `${new Date()}_${front.name}`;
     const nameFileBack = `${new Date()}_${back.name}`;
     const metadata = {
-        contentType:File.type
-    }
+        contentType: File.type,
+    };
     const taskFront = refFront.child(nameFileFront).put(front, metadata);
     const taskBack = refBack.child(nameFileBack).put(back, metadata);
     taskFront
-    .then(snapshot => snapshot.ref.getDownloadURL())
-    .then(url => {
-        console.log(url)
-    })
+        .then((snapshot) => snapshot.ref.getDownloadURL())
+        .then((url) => {
+            console.log(url);
+        });
 
     taskBack
-    .then(snapshot => snapshot.ref.getDownloadURL())
-    .then(url => {
-        console.log(url)
-    })
+        .then((snapshot) => snapshot.ref.getDownloadURL())
+        .then((url) => {
+            console.log(url);
+        });
 };
