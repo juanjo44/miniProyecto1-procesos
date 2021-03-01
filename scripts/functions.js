@@ -395,10 +395,10 @@ const setLike = () => {
     });
 };
 
-const addNewElement = (country, year, den, front, back) => {
+const addNewElement = async (country, year, den, front, back, typeC_B) => {
+    
     const refFront = firebase.storage().ref();
     const refBack = firebase.storage().ref();
-
     const nameFileFront =`${new Date()}_${front.name}`;
     const nameFileBack = `${new Date()}_${back.name}`;
     const metadata = {
@@ -406,15 +406,155 @@ const addNewElement = (country, year, den, front, back) => {
     }
     const taskFront = refFront.child(nameFileFront).put(front, metadata);
     const taskBack = refBack.child(nameFileBack).put(back, metadata);
+    let continent = "";
+    let urlBack = "";
+    let urlFront = "";
+
+    countriesMap.forEach((e) => {
+        if (e[0] === country){
+            continent = e[1];
+        }
+    });
+    console.log(continent);
     taskFront
     .then(snapshot => snapshot.ref.getDownloadURL())
     .then(url => {
-        console.log(url)
-    })
-
+        urlFront = url;
+    });
     taskBack
     .then(snapshot => snapshot.ref.getDownloadURL())
     .then(url => {
-        console.log(url)
-    })
+        urlBack = url;
+    });
+    console.log(urlFront);
+    console.log(urlBack);
+    
+
+    for (var [key, value] of Object.entries(idPaises)) {
+        if(key === country){
+            country = value;
+        }
+    }
+    
+    
+    switch (continent) {
+        case "Antartica":
+            console.log(continent);
+            taskFront
+            .then(snapshot => snapshot.ref.getDownloadURL())
+            .then(url => {
+                urlFront = url;
+                taskBack
+                .then(snapshot => snapshot.ref.getDownloadURL())
+                .then(async url => {
+                    urlBack = url;
+                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
+                    if(typeC_B === "B"){
+                        await db.collection("antarticaBills").add(newMoney)
+                    }else{
+                        await db.collection("antarticaCoins").add(newMoney)
+                    }
+                });
+            });
+            break;
+        case "Africa":
+            console.log(continent);
+            taskFront
+            .then(snapshot => snapshot.ref.getDownloadURL())
+            .then(url => {
+                urlFront = url;
+                taskBack
+                .then(snapshot => snapshot.ref.getDownloadURL())
+                .then(async url => {
+                    urlBack = url;
+                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
+                    if(typeC_B === "B"){
+                        await db.collection("africaBills").add(newMoney)
+                    }else{
+                        await db.collection("africaCoins").add(newMoney)
+                    }
+                });
+            });
+            break;
+        case "Europe":
+            console.log(continent);
+            taskFront
+            .then(snapshot => snapshot.ref.getDownloadURL())
+            .then(url => {
+                urlFront = url;
+                taskBack
+                .then(snapshot => snapshot.ref.getDownloadURL())
+                .then(async url => {
+                    urlBack = url;
+                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
+                    if(typeC_B === "B"){
+                        await db.collection("europeBills").add(newMoney)
+                    }else{
+                        await db.collection("europeCoins").add(newMoney)
+                    }
+                });
+            });
+            break;
+        case "America":
+            console.log(continent);
+            taskFront
+            .then(snapshot => snapshot.ref.getDownloadURL())
+            .then(url => {
+                urlFront = url;
+                taskBack
+                .then(snapshot => snapshot.ref.getDownloadURL())
+                .then(async url => {
+                    urlBack = url;
+                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
+                    if(typeC_B === "B"){
+                        await db.collection("americaBills").add(newMoney)
+                    }else{
+                        await db.collection("americaCoins").add(newMoney)
+                    }
+                });
+            });
+            break;
+        case "Oceania":
+            console.log(continent);
+            taskFront
+            .then(snapshot => snapshot.ref.getDownloadURL())
+            .then(url => {
+                urlFront = url;
+                taskBack
+                .then(snapshot => snapshot.ref.getDownloadURL())
+                .then(async url => {
+                    urlBack = url;
+                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
+                    if(typeC_B === "B"){
+                        await db.collection("oceaniaBills").add(newMoney)
+                    }else{
+                        await db.collection("oceaniaCoins").add(newMoney)
+                    }
+                });
+            });
+            break;
+        case "Asia":
+            console.log(continent);
+            taskFront
+            .then(snapshot => snapshot.ref.getDownloadURL())
+            .then(url => {
+                urlFront = url;
+                taskBack
+                .then(snapshot => snapshot.ref.getDownloadURL())
+                .then(async url => {
+                    urlBack = url;
+                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
+                    if(typeC_B === "B"){
+                        await db.collection("asiaBills").add(newMoney)
+                    }else{
+                        await db.collection("asiaCoins").add(newMoney)
+                    }
+                });
+            });
+            break;
+        default:
+            alert("Error");
+            break;
+    }
+
 };
