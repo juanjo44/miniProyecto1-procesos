@@ -95,7 +95,7 @@ const billCardTemplate = (id, front, back, country, denomsymbol, denomvalue, yea
             </div>
             <div class="bill-like-container">
                 <img src="../images/love.svg">
-                <button class="bill-like" data-id="${id}" data-continent="${continent}Coins">${likes}</button>
+                <button class="bill-like" data-id="${id}" data-continent="${continent}Bills">${likes}</button>
             </div>
         </div>
     </div>
