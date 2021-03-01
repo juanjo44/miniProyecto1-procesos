@@ -214,7 +214,7 @@ const fillCountryOptions2 = () => {
     });
     countryOptionBill.innerHTML += fragmentBill;
 
-    const countryOptionCoin= document.getElementById("countriesCoin");
+    const countryOptionCoin = document.getElementById("countriesCoin");
     countryOptionCoin.innerHTML = `<option value="">Selecciona un país</option>`;
     let fragmentCoin = "";
     countriesMap.forEach((c) => {
@@ -402,8 +402,8 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
     const nameFileFront =`${new Date()}_${front.name}`;
     const nameFileBack = `${new Date()}_${back.name}`;
     const metadata = {
-        contentType:File.type
-    }
+        contentType: File.type,
+    };
     const taskFront = refFront.child(nameFileFront).put(front, metadata);
     const taskBack = refBack.child(nameFileBack).put(back, metadata);
     let continent = "";
@@ -415,19 +415,6 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
             continent = e[1];
         }
     });
-    console.log(continent);
-    taskFront
-    .then(snapshot => snapshot.ref.getDownloadURL())
-    .then(url => {
-        urlFront = url;
-    });
-    taskBack
-    .then(snapshot => snapshot.ref.getDownloadURL())
-    .then(url => {
-        urlBack = url;
-    });
-    console.log(urlFront);
-    console.log(urlBack);
     
 
     for (var [key, value] of Object.entries(idPaises)) {
