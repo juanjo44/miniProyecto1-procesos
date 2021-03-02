@@ -6,6 +6,7 @@
     border-radius: 0.5em;
     box-shadow: 1px 1px 10px 0 #ccc;
     padding: 10px;
+    margin: 20px;
 }
 
 .bill-card-index {
@@ -16,6 +17,7 @@
     border-radius: 0.5em;
     box-shadow: 1px 1px 10px 0 #ccc;
     padding: 10px;
+    margin: 20px;
 }
 
 .bill-card-data {
