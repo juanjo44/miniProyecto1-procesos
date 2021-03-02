@@ -72,23 +72,23 @@
 
 .featured h2,
 .novelties h2 {
-    font-size: 40px;
+    font-size: 30px;
 }
 
 .featured-coins,
 .novelties-coins {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 50px;
+    grid-gap: 30px;
     width: 100%;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .featured-bills,
 .novelties-bills {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 50px;
+    grid-gap: 30px;
     width: 100%;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
