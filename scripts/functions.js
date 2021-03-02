@@ -44,6 +44,7 @@ const categorize = (coinQuery, billQuery, continent) => {
     for (const c in countries) {
         fragment += countryTemplate(countriesMap[c][0], countries[c][0], countries[c][1]);
     }
+    console.log(fragment)
     continentCards.innerHTML = fragment != "" ? fragment : notFoundTemplate();
     setLike();
 };
@@ -395,6 +396,52 @@ const setLike = () => {
     });
 };
 
+
+
+
+const updateRecentBills = (objectCollection) => {
+    let ultimo = db.collection("recentBills").orderBy("created", "asc").limit(1).get();
+
+    //Se borra el más antiguo (primero en asc)
+    db.collection("recentBills")
+        .doc(ultimo.id)
+        .delete()
+        .then(() => {
+            console.log("Document successfully deleted!");
+        })
+        .catch((error) => {
+            console.error("Error removing document: ", error);
+        });
+
+
+    objectCollection.then((snapshot)=>{
+        snapshot.docs.forEach(async (nuevo) => {
+            //Se añade el que se acaba de crear
+            db.collection("recentBills")
+            .doc(nuevo.id)
+            .set({
+
+                back: nuevo.data().back,
+                barter: nuevo.data().barter,
+                country: nuevo.data().country,
+                created: nuevo.data().created,
+                denomsymbol: nuevo.data().denomsymbol,
+                denomvalue: nuevo.data().denomvalue,
+                front: nuevo.data().front,
+                likes: nuevo.data().likes,
+                year: nuevo.data().year,
+            })
+            .then(() => {
+                console.log("Document successfully written!");
+            })
+            .catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+        });
+    });
+};
+
+
 const addNewElement = async (country, year, den, front, back, typeC_B) => {
     
     const refFront = firebase.storage().ref();
@@ -423,6 +470,8 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
         }
     }
     
+    const currentDate = new Date();
+    const timestamp = currentDate.getTime();
     
     switch (continent) {
         case "Antartica":
@@ -435,9 +484,10 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                 .then(snapshot => snapshot.ref.getDownloadURL())
                 .then(async url => {
                     urlBack = url;
-                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
+                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), created: timestamp, denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
                     if(typeC_B === "B"){
                         await db.collection("antarticaBills").add(newMoney)
+                        
                     }else{
                         await db.collection("antarticaCoins").add(newMoney)
                     }
@@ -454,7 +504,7 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                 .then(snapshot => snapshot.ref.getDownloadURL())
                 .then(async url => {
                     urlBack = url;
-                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
+                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), created: timestamp, denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
                     if(typeC_B === "B"){
                         await db.collection("africaBills").add(newMoney)
                     }else{
@@ -473,7 +523,7 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                 .then(snapshot => snapshot.ref.getDownloadURL())
                 .then(async url => {
                     urlBack = url;
-                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
+                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), created: timestamp, denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
                     if(typeC_B === "B"){
                         await db.collection("europeBills").add(newMoney)
                     }else{
@@ -492,11 +542,14 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                 .then(snapshot => snapshot.ref.getDownloadURL())
                 .then(async url => {
                     urlBack = url;
-                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
+                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), created: timestamp, denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
                     if(typeC_B === "B"){
                         await db.collection("americaBills").add(newMoney)
+                        await updateRecentBills(db.collection("americaBills").orderBy("created", "desc").limit(1).get());
+                        
                     }else{
                         await db.collection("americaCoins").add(newMoney)
+                        await updateRecentBills(db.collection("americaCoins").orderBy("created", "desc").limit(1).get());
                     }
                 });
             });
@@ -511,7 +564,7 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                 .then(snapshot => snapshot.ref.getDownloadURL())
                 .then(async url => {
                     urlBack = url;
-                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
+                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), created: timestamp, denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
                     if(typeC_B === "B"){
                         await db.collection("oceaniaBills").add(newMoney)
                     }else{
@@ -530,7 +583,7 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                 .then(snapshot => snapshot.ref.getDownloadURL())
                 .then(async url => {
                     urlBack = url;
-                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
+                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), created: timestamp, denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
                     if(typeC_B === "B"){
                         await db.collection("asiaBills").add(newMoney)
                     }else{
