@@ -9,8 +9,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    min-height: 85vh;
+    min-height: 90vh;
 }
 
 .banner::before {
@@ -63,36 +62,33 @@
     background-color: rgba(250, 250, 250, 0.15);
 }
 
-.featured {
-    padding: 30px;
+/* Featured and novelties */
+.featured,
+.novelties {
+    padding: 70px;
     display: flex;
     flex-direction: column;
 }
 
-.featured h2 {
-    font-size: 30px;
+.featured h2,
+.novelties h2 {
+    font-size: 40px;
 }
 
 .featured-coins,
-.featured-bills {
+.novelties-coins {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 50px;
+    width: 100%;
+    margin-bottom: 50px;
 }
 
-.novelties {
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-}
-
-.novelties h2 {
-    font-size: 30px;
-}
-
-.novelties-coins,
+.featured-bills,
 .novelties-bills {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    padding: 30px;
+    grid-gap: 50px;
+    width: 100%;
+    margin-bottom: 50px;
 }
