@@ -22,14 +22,15 @@
 #agregarBilletes,
 #agregarMonedas {
     margin: 20px;
-    background-color: #eee;
+    background-color: rgba(0, 0, 0, 0.01);
+    box-shadow: 0 0 5px 3px #eee;
     border-radius: 0.35em;
 }
 
 input {
     border-radius: 0.25em;
     border: none;
-    background-color: #fff;
+    background-color: #eee;
     margin: 5px 20px;
     padding: 10px;
 }
@@ -75,7 +76,8 @@ select {
 }
 
 #logueo {
-    background-color: #eee;
+    background-color: rgba(0, 0, 0, 0.01);
+    box-shadow: 0 0 5px 3px #eee;
     padding: 30px;
     border-radius: 0.25em;
 }
