@@ -32,6 +32,7 @@ addNewBill.addEventListener('submit', async (e) => {
     const front = document.querySelector('#formFileFrontBill').files[0];
     const back = document.querySelector('#formFileBackBill').files[0];
     addNewElement(country, year,denType ,den, front, back, "B");
+    alert("El billete de " + country + " de " + denType + den + " de " + year + " ha sido cargado al catálogo con éxito");
 })
 
 addNewCoin.addEventListener('submit', async (e) => {
@@ -44,6 +45,7 @@ addNewCoin.addEventListener('submit', async (e) => {
     const back = document.querySelector('#formFileBackCoin').files[0];
 
     addNewElement(country, year, denType, den, front, back,"C");
+    alert("La moneda de " + country + " de " + denType + den + " de " + year + " ha sido cargado al catálogo con éxito");
 })
 
 //Events
