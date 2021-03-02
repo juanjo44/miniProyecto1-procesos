@@ -8,34 +8,83 @@
     align-items: center;
     min-height: 70vh;
 }
+
 .section div {
     display: flex;
     flex-direction: column;
 }
 
-input {
-    background-color: #b0b5ba;
-    border: none;
-    border-radius: 5px;
-    padding: 20px;
-    margin-top: 20px;
-}
-
-button {
-    background-color: white;
-    border: 1px solid #b0b5ba;
-    border-radius: 5px;
-    width: 201px;
-    height: 58px;
-    margin-top: 20px;
-}
-
-::placeholder {
-    color: white;
-    opacity: 0.5;
-}
-
 #agregar {
     display: flex;
     flex-direction: row;
+}
+
+#agregarBilletes,
+#agregarMonedas {
+    margin: 20px;
+    background-color: #eee;
+    border-radius: 0.35em;
+}
+
+input {
+    border-radius: 0.25em;
+    border: none;
+    background-color: #fff;
+    margin: 5px 20px;
+    padding: 10px;
+}
+
+input[type="file"] {
+    background-color: transparent;
+}
+
+select {
+    border: none;
+    background-color: #fff;
+    margin: 20px;
+    padding: 10px;
+}
+
+button {
+    border: none;
+    border-radius: 0.35em;
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    margin: 10px 20px 20px;
+    width: 90%;
+    transition: transform 1s;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.01);
+}
+
+input:active,
+input:focus,
+select {
+    outline: 0;
+}
+
+#agregarBilletes p,
+#agregarMonedas p {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#logueo {
+    background-color: #eee;
+    padding: 30px;
+    border-radius: 0.25em;
+}
+
+#logueo input {
+    margin: 10px;
+    padding: 20px;
+}
+
+#logueo button {
+    margin: 10px;
 }

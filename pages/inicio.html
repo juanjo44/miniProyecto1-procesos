@@ -6,15 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="../css/inicio.css" />
         <link rel="shortcut icon" href="../images/logo.svg" type="image/x-icon" />
         <title>Numismática Martínez</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-            crossorigin="anonymous"
-        />
     </head>
     <body>
         <header class="header">
@@ -43,17 +36,18 @@
             <div id="logueo">
                 <form id="signin-form">
                     <div class="form-group">
-                        <input type="text" placeholder="email" id="signin-email" class="form-control" required />
+                        <input type="text" placeholder="Correo electrónico" id="signin-email" class="form-control" required />
                     </div>
                     <div class="form-group">
-                        <input type="password" placeholder="contraseña" id="signin-password" class="form-control" required />
+                        <input type="password" placeholder="Contraseña" id="signin-password" class="form-control" required />
                     </div>
-                    <button type="submit" class="btn btn-primary">Inciar</button>
+                    <button type="submit" class="btn btn-primary">Ingresar</button>
                 </form>
             </div>
 
             <div id="agregar">
                 <div id="agregarBilletes">
+                    <p>NUEVO BILLETE</p>
                     <form id="addBill-form">
                         <div class="form-group">
                             <select name="country" id="countriesBill" class="countries" required>
@@ -73,10 +67,11 @@
                             <input class="form-control" type="file" id="formFileBackBill" accept=".jpg, .jpeg, .png" />
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Agregar Billete</button>
+                        <button type="submit" class="btn btn-primary">Agregar</button>
                     </form>
                 </div>
                 <div id="agregarMonedas">
+                    <p>NUEVA MONEDA</p>
                     <form id="addCoin-form">
                         <div class="form-group">
                             <select name="country" id="countriesCoin" class="countries" required>
@@ -95,7 +90,7 @@
                         <div class="mb-3">
                             <input class="form-control" type="file" id="formFileBackCoin" accept=".jpg, .jpeg, .png" />
                         </div>
-                        <button type="submit" class="btn btn-primary">Agregar Moneda</button>
+                        <button type="submit" class="btn btn-primary">Agregar</button>
                     </form>
                 </div>
             </div>
