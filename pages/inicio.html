@@ -47,6 +47,7 @@
             </div>
 
             <div id="agregar">
+                <button type="button" id="logout">Salir</button>
                 <div id="agregarBilletes">
                     <p>NUEVO BILLETE</p>
                     <form id="addBill-form">
@@ -58,14 +59,17 @@
                         <div class="form-group">
                             <input type="number" placeholder="Año" id="addYearBill" class="form-control" required />
                         </div>
+                        <div class="mb-3">
+                            <input type="text" placeholder="Tipo: USD, COP, EUR" id="addDenTypeBill" required />
+                        </div>
                         <div class="form-group">
                             <input type="number" placeholder="Denominación" id="addDenBill" class="form-control" required />
                         </div>
                         <div class="mb-3">
-                            <input class="form-control" type="file" id="formFileFrontBill" accept=".jpg, .jpeg, .png" />
+                            <input class="form-control" type="file" id="formFileFrontBill" accept=".jpg, .jpeg, .png" required/>
                         </div>
                         <div class="mb-3">
-                            <input class="form-control" type="file" id="formFileBackBill" accept=".jpg, .jpeg, .png" />
+                            <input class="form-control" type="file" id="formFileBackBill" accept=".jpg, .jpeg, .png" required/>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Agregar</button>
@@ -81,6 +85,9 @@
                         </div>
                         <div class="form-group">
                             <input type="number" placeholder="Año" id="addYearCoin" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" placeholder="Tipo: USD, COP, EUR" id="addDenTypeCoin" required />
                         </div>
                         <div class="form-group">
                             <input type="number" placeholder="Denominación" id="addDenCoin" class="form-control" required />

@@ -436,7 +436,7 @@ const updateRecentBills = (objectCollection) => {
     });
 };
 
-const addNewElement = async (country, year, den, front, back, typeC_B) => {
+const addNewElement = async (country, year, denType, den, front, back, typeC_B) => {
     const refFront = firebase.storage().ref();
     const refBack = firebase.storage().ref();
     const nameFileFront = `${new Date()}_${front.name}`;
@@ -481,7 +481,7 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                                 barter: 1,
                                 country: parseInt(country, 10),
                                 created: timestamp,
-                                denomsymbol: "$",
+                                denomsymbol: denType,
                                 denomvalue: parseInt(den, 10),
                                 front: urlFront,
                                 likes: 0,
@@ -510,7 +510,7 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                                 barter: 1,
                                 country: parseInt(country, 10),
                                 created: timestamp,
-                                denomsymbol: "$",
+                                denomsymbol: denType,
                                 denomvalue: parseInt(den, 10),
                                 front: urlFront,
                                 likes: 0,
@@ -539,7 +539,7 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                                 barter: 1,
                                 country: parseInt(country, 10),
                                 created: timestamp,
-                                denomsymbol: "$",
+                                denomsymbol: denType,
                                 denomvalue: parseInt(den, 10),
                                 front: urlFront,
                                 likes: 0,
@@ -568,7 +568,7 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                                 barter: 1,
                                 country: parseInt(country, 10),
                                 created: timestamp,
-                                denomsymbol: "$",
+                                denomsymbol: denType,
                                 denomvalue: parseInt(den, 10),
                                 front: urlFront,
                                 likes: 0,
@@ -599,7 +599,7 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                                 barter: 1,
                                 country: parseInt(country, 10),
                                 created: timestamp,
-                                denomsymbol: "$",
+                                denomsymbol: denType,
                                 denomvalue: parseInt(den, 10),
                                 front: urlFront,
                                 likes: 0,
@@ -628,7 +628,7 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                                 barter: 1,
                                 country: parseInt(country, 10),
                                 created: timestamp,
-                                denomsymbol: "$",
+                                denomsymbol: denType,
                                 denomvalue: parseInt(den, 10),
                                 front: urlFront,
                                 likes: 0,
