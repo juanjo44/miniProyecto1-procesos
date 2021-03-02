@@ -44,7 +44,7 @@ const categorize = (coinQuery, billQuery, continent) => {
     for (const c in countries) {
         fragment += countryTemplate(countriesMap[c][0], countries[c][0], countries[c][1]);
     }
-    console.log(fragment)
+    console.log(fragment);
     continentCards.innerHTML = fragment != "" ? fragment : notFoundTemplate();
     setLike();
 };
@@ -396,9 +396,6 @@ const setLike = () => {
     });
 };
 
-
-
-
 const updateRecentBills = (objectCollection) => {
     let ultimo = db.collection("recentBills").orderBy("created", "asc").limit(1).get();
 
@@ -413,40 +410,36 @@ const updateRecentBills = (objectCollection) => {
             console.error("Error removing document: ", error);
         });
 
-
-    objectCollection.then((snapshot)=>{
+    objectCollection.then((snapshot) => {
         snapshot.docs.forEach(async (nuevo) => {
             //Se añade el que se acaba de crear
             db.collection("recentBills")
-            .doc(nuevo.id)
-            .set({
-
-                back: nuevo.data().back,
-                barter: nuevo.data().barter,
-                country: nuevo.data().country,
-                created: nuevo.data().created,
-                denomsymbol: nuevo.data().denomsymbol,
-                denomvalue: nuevo.data().denomvalue,
-                front: nuevo.data().front,
-                likes: nuevo.data().likes,
-                year: nuevo.data().year,
-            })
-            .then(() => {
-                console.log("Document successfully written!");
-            })
-            .catch((error) => {
-                console.error("Error writing document: ", error);
-            });
+                .doc(nuevo.id)
+                .set({
+                    back: nuevo.data().back,
+                    barter: nuevo.data().barter,
+                    country: nuevo.data().country,
+                    created: nuevo.data().created,
+                    denomsymbol: nuevo.data().denomsymbol,
+                    denomvalue: nuevo.data().denomvalue,
+                    front: nuevo.data().front,
+                    likes: nuevo.data().likes,
+                    year: nuevo.data().year,
+                })
+                .then(() => {
+                    console.log("Document successfully written!");
+                })
+                .catch((error) => {
+                    console.error("Error writing document: ", error);
+                });
         });
     });
 };
 
-
 const addNewElement = async (country, year, den, front, back, typeC_B) => {
-    
     const refFront = firebase.storage().ref();
     const refBack = firebase.storage().ref();
-    const nameFileFront =`${new Date()}_${front.name}`;
+    const nameFileFront = `${new Date()}_${front.name}`;
     const nameFileBack = `${new Date()}_${back.name}`;
     const metadata = {
         contentType: File.type,
@@ -458,143 +451,199 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
     let urlFront = "";
 
     countriesMap.forEach((e) => {
-        if (e[0] === country){
+        if (e[0] === country) {
             continent = e[1];
         }
     });
-    
 
     for (var [key, value] of Object.entries(idPaises)) {
-        if(key === country){
+        if (key === country) {
             country = value;
         }
     }
-    
+
     const currentDate = new Date();
     const timestamp = currentDate.getTime();
-    
+
     switch (continent) {
         case "Antartica":
             console.log(continent);
             taskFront
-            .then(snapshot => snapshot.ref.getDownloadURL())
-            .then(url => {
-                urlFront = url;
-                taskBack
-                .then(snapshot => snapshot.ref.getDownloadURL())
-                .then(async url => {
-                    urlBack = url;
-                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), created: timestamp, denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
-                    if(typeC_B === "B"){
-                        await db.collection("antarticaBills").add(newMoney)
-                        
-                    }else{
-                        await db.collection("antarticaCoins").add(newMoney)
-                    }
+                .then((snapshot) => snapshot.ref.getDownloadURL())
+                .then((url) => {
+                    urlFront = url;
+                    taskBack
+                        .then((snapshot) => snapshot.ref.getDownloadURL())
+                        .then(async (url) => {
+                            urlBack = url;
+                            const newMoney = {
+                                back: urlBack,
+                                barter: 1,
+                                country: parseInt(country, 10),
+                                created: timestamp,
+                                denomsymbol: "$",
+                                denomvalue: parseInt(den, 10),
+                                front: urlFront,
+                                likes: 0,
+                                year: parseInt(year, 10),
+                            };
+                            if (typeC_B === "B") {
+                                await db.collection("antarticaBills").add(newMoney);
+                            } else {
+                                await db.collection("antarticaCoins").add(newMoney);
+                            }
+                        });
                 });
-            });
             break;
         case "Africa":
             console.log(continent);
             taskFront
-            .then(snapshot => snapshot.ref.getDownloadURL())
-            .then(url => {
-                urlFront = url;
-                taskBack
-                .then(snapshot => snapshot.ref.getDownloadURL())
-                .then(async url => {
-                    urlBack = url;
-                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), created: timestamp, denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
-                    if(typeC_B === "B"){
-                        await db.collection("africaBills").add(newMoney)
-                    }else{
-                        await db.collection("africaCoins").add(newMoney)
-                    }
+                .then((snapshot) => snapshot.ref.getDownloadURL())
+                .then((url) => {
+                    urlFront = url;
+                    taskBack
+                        .then((snapshot) => snapshot.ref.getDownloadURL())
+                        .then(async (url) => {
+                            urlBack = url;
+                            const newMoney = {
+                                back: urlBack,
+                                barter: 1,
+                                country: parseInt(country, 10),
+                                created: timestamp,
+                                denomsymbol: "$",
+                                denomvalue: parseInt(den, 10),
+                                front: urlFront,
+                                likes: 0,
+                                year: parseInt(year, 10),
+                            };
+                            if (typeC_B === "B") {
+                                await db.collection("africaBills").add(newMoney);
+                            } else {
+                                await db.collection("africaCoins").add(newMoney);
+                            }
+                        });
                 });
-            });
             break;
         case "Europe":
             console.log(continent);
             taskFront
-            .then(snapshot => snapshot.ref.getDownloadURL())
-            .then(url => {
-                urlFront = url;
-                taskBack
-                .then(snapshot => snapshot.ref.getDownloadURL())
-                .then(async url => {
-                    urlBack = url;
-                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), created: timestamp, denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
-                    if(typeC_B === "B"){
-                        await db.collection("europeBills").add(newMoney)
-                    }else{
-                        await db.collection("europeCoins").add(newMoney)
-                    }
+                .then((snapshot) => snapshot.ref.getDownloadURL())
+                .then((url) => {
+                    urlFront = url;
+                    taskBack
+                        .then((snapshot) => snapshot.ref.getDownloadURL())
+                        .then(async (url) => {
+                            urlBack = url;
+                            const newMoney = {
+                                back: urlBack,
+                                barter: 1,
+                                country: parseInt(country, 10),
+                                created: timestamp,
+                                denomsymbol: "$",
+                                denomvalue: parseInt(den, 10),
+                                front: urlFront,
+                                likes: 0,
+                                year: parseInt(year, 10),
+                            };
+                            if (typeC_B === "B") {
+                                await db.collection("europeBills").add(newMoney);
+                            } else {
+                                await db.collection("europeCoins").add(newMoney);
+                            }
+                        });
                 });
-            });
             break;
         case "America":
             console.log(continent);
             taskFront
-            .then(snapshot => snapshot.ref.getDownloadURL())
-            .then(url => {
-                urlFront = url;
-                taskBack
-                .then(snapshot => snapshot.ref.getDownloadURL())
-                .then(async url => {
-                    urlBack = url;
-                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), created: timestamp, denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
-                    if(typeC_B === "B"){
-                        await db.collection("americaBills").add(newMoney)
-                        await updateRecentBills(db.collection("americaBills").orderBy("created", "desc").limit(1).get());
-                        
-                    }else{
-                        await db.collection("americaCoins").add(newMoney)
-                        await updateRecentBills(db.collection("americaCoins").orderBy("created", "desc").limit(1).get());
-                    }
+                .then((snapshot) => snapshot.ref.getDownloadURL())
+                .then((url) => {
+                    urlFront = url;
+                    taskBack
+                        .then((snapshot) => snapshot.ref.getDownloadURL())
+                        .then(async (url) => {
+                            urlBack = url;
+                            const newMoney = {
+                                back: urlBack,
+                                barter: 1,
+                                country: parseInt(country, 10),
+                                created: timestamp,
+                                denomsymbol: "$",
+                                denomvalue: parseInt(den, 10),
+                                front: urlFront,
+                                likes: 0,
+                                year: parseInt(year, 10),
+                            };
+                            if (typeC_B === "B") {
+                                await db.collection("americaBills").add(newMoney);
+                                await updateRecentBills(db.collection("americaBills").orderBy("created", "desc").limit(1).get());
+                            } else {
+                                await db.collection("americaCoins").add(newMoney);
+                                await updateRecentBills(db.collection("americaCoins").orderBy("created", "desc").limit(1).get());
+                            }
+                        });
                 });
-            });
             break;
         case "Oceania":
             console.log(continent);
             taskFront
-            .then(snapshot => snapshot.ref.getDownloadURL())
-            .then(url => {
-                urlFront = url;
-                taskBack
-                .then(snapshot => snapshot.ref.getDownloadURL())
-                .then(async url => {
-                    urlBack = url;
-                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), created: timestamp, denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
-                    if(typeC_B === "B"){
-                        await db.collection("oceaniaBills").add(newMoney)
-                    }else{
-                        await db.collection("oceaniaCoins").add(newMoney)
-                    }
+                .then((snapshot) => snapshot.ref.getDownloadURL())
+                .then((url) => {
+                    urlFront = url;
+                    taskBack
+                        .then((snapshot) => snapshot.ref.getDownloadURL())
+                        .then(async (url) => {
+                            urlBack = url;
+                            const newMoney = {
+                                back: urlBack,
+                                barter: 1,
+                                country: parseInt(country, 10),
+                                created: timestamp,
+                                denomsymbol: "$",
+                                denomvalue: parseInt(den, 10),
+                                front: urlFront,
+                                likes: 0,
+                                year: parseInt(year, 10),
+                            };
+                            if (typeC_B === "B") {
+                                await db.collection("oceaniaBills").add(newMoney);
+                            } else {
+                                await db.collection("oceaniaCoins").add(newMoney);
+                            }
+                        });
                 });
-            });
             break;
         case "Asia":
             console.log(continent);
             taskFront
-            .then(snapshot => snapshot.ref.getDownloadURL())
-            .then(url => {
-                urlFront = url;
-                taskBack
-                .then(snapshot => snapshot.ref.getDownloadURL())
-                .then(async url => {
-                    urlBack = url;
-                    const newMoney = { back: urlBack, barter: 1, country: parseInt(country, 10), created: timestamp, denomsymbol: "$", denomvalue: parseInt(den, 10), front: urlFront, likes: 0, year: parseInt(year, 10)}
-                    if(typeC_B === "B"){
-                        await db.collection("asiaBills").add(newMoney)
-                    }else{
-                        await db.collection("asiaCoins").add(newMoney)
-                    }
+                .then((snapshot) => snapshot.ref.getDownloadURL())
+                .then((url) => {
+                    urlFront = url;
+                    taskBack
+                        .then((snapshot) => snapshot.ref.getDownloadURL())
+                        .then(async (url) => {
+                            urlBack = url;
+                            const newMoney = {
+                                back: urlBack,
+                                barter: 1,
+                                country: parseInt(country, 10),
+                                created: timestamp,
+                                denomsymbol: "$",
+                                denomvalue: parseInt(den, 10),
+                                front: urlFront,
+                                likes: 0,
+                                year: parseInt(year, 10),
+                            };
+                            if (typeC_B === "B") {
+                                await db.collection("asiaBills").add(newMoney);
+                            } else {
+                                await db.collection("asiaCoins").add(newMoney);
+                            }
+                        });
                 });
-            });
             break;
         default:
             alert("Error");
             break;
     }
-
 };
