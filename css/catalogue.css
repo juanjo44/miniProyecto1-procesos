@@ -19,7 +19,7 @@ section {
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
-    box-shadow: 0 0 10px 5px #eee;
+    box-shadow: 0 5px 10px 1px #eee;
     border-radius: 0.35em;
     margin: 30px;
 }
