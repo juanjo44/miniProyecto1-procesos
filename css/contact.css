@@ -10,20 +10,21 @@ section {
 }
 
 form {
-    max-height: 400px;
+    max-height: 450px;
     border: none;
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: repeat(7, 1fr);
     grid-template-areas:
         "title title"
         "name email"
         "message message"
         "message message"
         "message message"
-        "send send";
-    padding: 3em;
+        "send send"
+        "Whatsapp Whatsapp";
+    padding: 1em 3em;
     border-radius: 0.5em;
     background-color: rgba(0, 0, 0, 0.01);
     box-shadow: 0 0 5px 3px #eee;
@@ -72,4 +73,14 @@ input:active,
 input:focus,
 textarea {
     outline: 0;
+}
+
+form p{
+    grid-area: Whatsapp;
+    text-align: center;
+}
+
+form p a:visited{
+    color: #000;
+    
 }

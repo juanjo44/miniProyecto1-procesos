@@ -405,6 +405,7 @@ const updateRecentCoins = async (objectCollection) => {
             .delete()
             .then(() => {
                 console.log("Document successfully deleted!");
+                //alert("El billete de " + country + " de " + denType + den + " de " + year + " ha sido cargado al catálogo con éxito");
             })
             .catch((error) => {
                 console.error("Error removing document: ", error);
@@ -431,6 +432,7 @@ const updateRecentCoins = async (objectCollection) => {
                 })
                 .then(() => {
                     console.log("Document successfully written!");
+                    alert("La moneda ha sido cargado al catálogo con éxito");
                 })
                 .catch((error) => {
                     console.error("Error writing document: ", error);
@@ -474,6 +476,7 @@ const updateRecentBills = async (objectCollection) => {
                 })
                 .then(() => {
                     console.log("Document successfully written!");
+                    alert("El billete ha sido cargado al catálogo con éxito");
                 })
                 .catch((error) => {
                     console.error("Error writing document: ", error);
