@@ -86,6 +86,7 @@
 
 .featured-coins,
 .novelties-coins {
+    justify-content: space-around;
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -94,6 +95,7 @@
 
 .featured-bills,
 .novelties-bills {
+    justify-content: space-around;
     display: flex;
     flex-wrap: wrap;
     width: 100%;
