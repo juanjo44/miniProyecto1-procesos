@@ -536,10 +536,10 @@ const addNewElement = async (country, year, denType, den, front, back, typeC_B) 
                             };
                             if (typeC_B === "B") {
                                 await db.collection("antarticaBills").add(newMoney);
-                                await updateRecentBills(db.collection("antarticaBills").orderBy("created", "desc").limit(1).get());
+                                await updateRecentBills(db.collection("antarticaBills").orderBy("created", "asc").limitToLast(1).get());
                             } else {
                                 await db.collection("antarticaCoins").add(newMoney);
-                                await updateRecentCoins(db.collection("antarticaCoins").orderBy("created", "desc").limit(1).get());
+                                await updateRecentCoins(db.collection("antarticaCoins").orderBy("created", "asc").limitToLast(1).get());
                             }
                         });
                 });
@@ -567,10 +567,10 @@ const addNewElement = async (country, year, denType, den, front, back, typeC_B) 
                             };
                             if (typeC_B === "B") {
                                 await db.collection("africaBills").add(newMoney);
-                                await updateRecentBills(db.collection("africaBills").orderBy("created", "desc").limit(1).get());
+                                await updateRecentBills(db.collection("africaBills").orderBy("created", "asc").limitToLast(1).get());
                             } else {
                                 await db.collection("africaCoins").add(newMoney);
-                                await updateRecentCoins(db.collection("africaBills").orderBy("created", "desc").limit(1).get());
+                                await updateRecentCoins(db.collection("africaCoins").orderBy("created", "asc").limitToLast(1).get());
                             }
                         });
                 });
@@ -598,10 +598,10 @@ const addNewElement = async (country, year, denType, den, front, back, typeC_B) 
                             };
                             if (typeC_B === "B") {
                                 await db.collection("europeBills").add(newMoney);
-                                await updateRecentBills(db.collection("europeBills").orderBy("created", "desc").limit(1).get());
+                                await updateRecentBills(db.collection("europeBills").orderBy("created", "asc").limitToLast(1).get());
                             } else {
                                 await db.collection("europeCoins").add(newMoney);
-                                await updateRecentCoins(db.collection("europeBills").orderBy("created", "desc").limit(1).get());
+                                await updateRecentCoins(db.collection("europeCoins").orderBy("created", "asc").limitToLast(1).get());
                             }
                         });
                 });
@@ -629,10 +629,10 @@ const addNewElement = async (country, year, denType, den, front, back, typeC_B) 
                             };
                             if (typeC_B === "B") {
                                 await db.collection("americaBills").add(newMoney);
-                                await updateRecentBills(db.collection("americaBills").orderBy("created", "desc").limit(1).get());
+                                await updateRecentBills(db.collection("americaBills").orderBy("created", "asc").limitToLast(1).get());
                             } else {
                                 await db.collection("americaCoins").add(newMoney);
-                                await updateRecentCoins(db.collection("americaCoins").orderBy("created", "desc").limit(1).get());
+                                await updateRecentCoins(db.collection("americaCoins").orderBy("created", "asc").limitToLast(1).get());
                             }
                         });
                 });
@@ -660,10 +660,10 @@ const addNewElement = async (country, year, denType, den, front, back, typeC_B) 
                             };
                             if (typeC_B === "B") {
                                 await db.collection("oceaniaBills").add(newMoney);
-                                await updateRecentBills(db.collection("oceaniaBills").orderBy("created", "desc").limit(1).get());
+                                await updateRecentBills(db.collection("oceaniaBills").orderBy("created", "asc").limitToLast(1).get());
                             } else {
                                 await db.collection("oceaniaCoins").add(newMoney);
-                                await updateRecentCoins(db.collection("oceaniaCoins").orderBy("created", "desc").limit(1).get());
+                                await updateRecentCoins(db.collection("oceaniaCoins").orderBy("created", "asc").limitToLast(1).get());
                             }
                         });
                 });
@@ -691,8 +691,10 @@ const addNewElement = async (country, year, denType, den, front, back, typeC_B) 
                             };
                             if (typeC_B === "B") {
                                 await db.collection("asiaBills").add(newMoney);
+                                await updateRecentBills(db.collection("asiaBills").orderBy("created", "asc").limitToLast(1).get());
                             } else {
                                 await db.collection("asiaCoins").add(newMoney);
+                                await updateRecentCoins(db.collection("asiaCoins").orderBy("created", "asc").limitToLast(1).get());
                             }
                         });
                 });
