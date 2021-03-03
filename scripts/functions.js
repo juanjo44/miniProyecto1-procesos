@@ -299,14 +299,12 @@ const paintRecent = (recentCoins, recentBills) => {
     recentBillsContainer.innerHTML = fragment;
 };
 
-// Obtiene el documento desde un id específico
-const getDocument = (id, collection) => db.collection(collection).doc(id).get();
 
 // Actualiza el document desde un id con unos datos nuevos
 const updateDocument = (id, newData, collection) => db.collection(collection).doc(id).update(newData);
 
 const updateFeatured = async (ultimo, nuevo, collection) => {
-    //Se borra el más antiguo (primero en asc)
+
     await db
         .collection(collection)
         .doc(ultimo.id)
@@ -317,22 +315,23 @@ const updateFeatured = async (ultimo, nuevo, collection) => {
         .catch((error) => {
             console.error("Error removing document: ", error);
         });
-    //Se añade el que se acaba de crear
+    
+    //Se añade el que tiene más likes
+    const newDoc = {
+        back: nuevo.data().back,
+        barter: nuevo.data().barter,
+        country: nuevo.data().country,
+        created: nuevo.data().created,
+        denomsymbol: nuevo.data().denomsymbol,
+        denomvalue: nuevo.data().denomvalue,
+        front: nuevo.data().front,
+        likes: nuevo.data().likes,
+        year: nuevo.data().year
+    }
+    
     await db
         .collection(collection)
-        .doc(nuevo.id)
-        .set({
-            ID: nuevo.data().ID,
-            back: nuevo.data().back,
-            barter: nuevo.data().barter,
-            country: nuevo.data().country,
-            created: nuevo.data().created,
-            denomsymbol: nuevo.data().denomsymbol,
-            denomvalue: nuevo.data().denomvalue,
-            front: nuevo.data().front,
-            likes: nuevo.data().likes,
-            year: nuevo.data().year,
-        })
+        .add(newDoc)
         .then(() => {
             console.log("Document successfully written!");
         })
@@ -350,7 +349,7 @@ const setLike = () => {
     // Evento de click para cada botón de like de monedas
     coinLike.forEach((likeButton) => {
         likeButton.addEventListener("click", async (e) => {
-            const doc = await getDocument(e.target.dataset.id, e.target.dataset.continent);
+            const doc = await db.collection(e.target.dataset.continent).doc(e.target.dataset.id).get();
             const i = doc.data().likes + 1;
             await updateDocument(doc.id, {likes: i}, e.target.dataset.continent);
 
@@ -374,7 +373,7 @@ const setLike = () => {
     // Evento de click para cada botón de like de billetes
     billLike.forEach((likeButton) => {
         likeButton.addEventListener("click", async (e) => {
-            const doc = await getDocument(e.target.dataset.id, e.target.dataset.continent);
+            const doc = await db.collection(e.target.dataset.continent).doc(e.target.dataset.id).get();
             const i = doc.data().likes + 1;
             await updateDocument(doc.id, {likes: i}, e.target.dataset.continent);
 
@@ -397,11 +396,11 @@ const setLike = () => {
 };
 
 // Actualizar las monedas más recientes
-const updateRecentCoins = (objectCollection) => {
-    db.collection("recentCoins").orderBy("created", "asc").limit(1).get().then((snapshot) => {
+const updateRecentCoins = async (objectCollection) => {
+    await db.collection("recentCoins").orderBy("created", "asc").limit(1).get().then((snapshot) => {
         snapshot.docs.forEach(async (ultimo) => {
             //Se borra el más antiguo (primero en asc)
-            db.collection("recentCoins")
+            await db.collection("recentCoins")
             .doc(ultimo.id)
             .delete()
             .then(() => {
@@ -414,7 +413,7 @@ const updateRecentCoins = (objectCollection) => {
     });
     
     //Se añade el que se acaba de crear
-    objectCollection.then((snapshot) => {
+    await objectCollection.then((snapshot) => {
         snapshot.docs.forEach(async (nuevo) => {
             //Se añade el que se acaba de crear
             db.collection("recentCoins")
@@ -440,11 +439,11 @@ const updateRecentCoins = (objectCollection) => {
     });
  };
 
-const updateRecentBills = (objectCollection) => {
-    db.collection("recentBills").orderBy("created", "asc").limit(1).get().then((snapshot) => {
+const updateRecentBills = async (objectCollection) => {
+    await db.collection("recentBills").orderBy("created", "asc").limit(1).get().then((snapshot) => {
         snapshot.docs.forEach(async (ultimo) => {
             //Se borra el más antiguo (primero en asc)
-            db.collection("recentBills")
+            await db.collection("recentBills")
             .doc(ultimo.id)
             .delete()
             .then(() => {
@@ -457,7 +456,7 @@ const updateRecentBills = (objectCollection) => {
     });
 
 
-    objectCollection.then((snapshot) => {
+    await objectCollection.then((snapshot) => {
         snapshot.docs.forEach(async (nuevo) => {
             //Se añade el que se acaba de crear
             db.collection("recentBills")
