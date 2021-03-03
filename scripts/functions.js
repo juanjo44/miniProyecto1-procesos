@@ -396,19 +396,66 @@ const setLike = () => {
     });
 };
 
-const updateRecentBills = (objectCollection) => {
-    let ultimo = db.collection("recentBills").orderBy("created", "asc").limit(1).get();
-
-    //Se borra el más antiguo (primero en asc)
-    db.collection("recentBills")
-        .doc(ultimo.id)
-        .delete()
-        .then(() => {
-            console.log("Document successfully deleted!");
-        })
-        .catch((error) => {
-            console.error("Error removing document: ", error);
+// Actualizar las monedas más recientes
+const updateRecentCoins = (objectCollection) => {
+    db.collection("recentCoins").orderBy("created", "asc").limit(1).get().then((snapshot) => {
+        snapshot.docs.forEach(async (ultimo) => {
+            //Se borra el más antiguo (primero en asc)
+            db.collection("recentCoins")
+            .doc(ultimo.id)
+            .delete()
+            .then(() => {
+                console.log("Document successfully deleted!");
+            })
+            .catch((error) => {
+                console.error("Error removing document: ", error);
+            });
         });
+    });
+    
+    //Se añade el que se acaba de crear
+    objectCollection.then((snapshot) => {
+        snapshot.docs.forEach(async (nuevo) => {
+            //Se añade el que se acaba de crear
+            db.collection("recentCoins")
+                .doc(nuevo.id)
+                .set({
+                    back: nuevo.data().back,
+                    barter: nuevo.data().barter,
+                    country: nuevo.data().country,
+                    created: nuevo.data().created,
+                    denomsymbol: nuevo.data().denomsymbol,
+                    denomvalue: nuevo.data().denomvalue,
+                    front: nuevo.data().front,
+                    likes: nuevo.data().likes,
+                    year: nuevo.data().year,
+                })
+                .then(() => {
+                    console.log("Document successfully written!");
+                })
+                .catch((error) => {
+                    console.error("Error writing document: ", error);
+                });
+        });
+    });
+ };
+
+const updateRecentBills = (objectCollection) => {
+    db.collection("recentBills").orderBy("created", "asc").limit(1).get().then((snapshot) => {
+        snapshot.docs.forEach(async (ultimo) => {
+            //Se borra el más antiguo (primero en asc)
+            db.collection("recentBills")
+            .doc(ultimo.id)
+            .delete()
+            .then(() => {
+                console.log("Document successfully deleted!");
+            })
+            .catch((error) => {
+                console.error("Error removing document: ", error);
+            });
+        });
+    });
+
 
     objectCollection.then((snapshot) => {
         snapshot.docs.forEach(async (nuevo) => {
@@ -436,7 +483,7 @@ const updateRecentBills = (objectCollection) => {
     });
 };
 
-const addNewElement = async (country, year, den, front, back, typeC_B) => {
+const addNewElement = async (country, year, denType, den, front, back, typeC_B) => {
     const refFront = firebase.storage().ref();
     const refBack = firebase.storage().ref();
     const nameFileFront = `${new Date()}_${front.name}`;
@@ -481,7 +528,7 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                                 barter: 1,
                                 country: parseInt(country, 10),
                                 created: timestamp,
-                                denomsymbol: "$",
+                                denomsymbol: denType,
                                 denomvalue: parseInt(den, 10),
                                 front: urlFront,
                                 likes: 0,
@@ -489,8 +536,10 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                             };
                             if (typeC_B === "B") {
                                 await db.collection("antarticaBills").add(newMoney);
+                                await updateRecentBills(db.collection("antarticaBills").orderBy("created", "desc").limit(1).get());
                             } else {
                                 await db.collection("antarticaCoins").add(newMoney);
+                                await updateRecentCoins(db.collection("antarticaCoins").orderBy("created", "desc").limit(1).get());
                             }
                         });
                 });
@@ -510,7 +559,7 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                                 barter: 1,
                                 country: parseInt(country, 10),
                                 created: timestamp,
-                                denomsymbol: "$",
+                                denomsymbol: denType,
                                 denomvalue: parseInt(den, 10),
                                 front: urlFront,
                                 likes: 0,
@@ -518,8 +567,10 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                             };
                             if (typeC_B === "B") {
                                 await db.collection("africaBills").add(newMoney);
+                                await updateRecentBills(db.collection("africaBills").orderBy("created", "desc").limit(1).get());
                             } else {
                                 await db.collection("africaCoins").add(newMoney);
+                                await updateRecentCoins(db.collection("africaBills").orderBy("created", "desc").limit(1).get());
                             }
                         });
                 });
@@ -539,7 +590,7 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                                 barter: 1,
                                 country: parseInt(country, 10),
                                 created: timestamp,
-                                denomsymbol: "$",
+                                denomsymbol: denType,
                                 denomvalue: parseInt(den, 10),
                                 front: urlFront,
                                 likes: 0,
@@ -547,8 +598,10 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                             };
                             if (typeC_B === "B") {
                                 await db.collection("europeBills").add(newMoney);
+                                await updateRecentBills(db.collection("europeBills").orderBy("created", "desc").limit(1).get());
                             } else {
                                 await db.collection("europeCoins").add(newMoney);
+                                await updateRecentCoins(db.collection("europeBills").orderBy("created", "desc").limit(1).get());
                             }
                         });
                 });
@@ -568,7 +621,7 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                                 barter: 1,
                                 country: parseInt(country, 10),
                                 created: timestamp,
-                                denomsymbol: "$",
+                                denomsymbol: denType,
                                 denomvalue: parseInt(den, 10),
                                 front: urlFront,
                                 likes: 0,
@@ -579,7 +632,7 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                                 await updateRecentBills(db.collection("americaBills").orderBy("created", "desc").limit(1).get());
                             } else {
                                 await db.collection("americaCoins").add(newMoney);
-                                await updateRecentBills(db.collection("americaCoins").orderBy("created", "desc").limit(1).get());
+                                await updateRecentCoins(db.collection("americaCoins").orderBy("created", "desc").limit(1).get());
                             }
                         });
                 });
@@ -599,7 +652,7 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                                 barter: 1,
                                 country: parseInt(country, 10),
                                 created: timestamp,
-                                denomsymbol: "$",
+                                denomsymbol: denType,
                                 denomvalue: parseInt(den, 10),
                                 front: urlFront,
                                 likes: 0,
@@ -607,8 +660,10 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                             };
                             if (typeC_B === "B") {
                                 await db.collection("oceaniaBills").add(newMoney);
+                                await updateRecentBills(db.collection("oceaniaBills").orderBy("created", "desc").limit(1).get());
                             } else {
                                 await db.collection("oceaniaCoins").add(newMoney);
+                                await updateRecentCoins(db.collection("oceaniaCoins").orderBy("created", "desc").limit(1).get());
                             }
                         });
                 });
@@ -628,7 +683,7 @@ const addNewElement = async (country, year, den, front, back, typeC_B) => {
                                 barter: 1,
                                 country: parseInt(country, 10),
                                 created: timestamp,
-                                denomsymbol: "$",
+                                denomsymbol: denType,
                                 denomvalue: parseInt(den, 10),
                                 front: urlFront,
                                 likes: 0,
