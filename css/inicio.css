@@ -92,3 +92,19 @@ select {
 #logueo button {
     margin: 10px;
 }
+
+#crearCuenta {
+    background-color: rgba(0, 0, 0, 0.01);
+    box-shadow: 0 0 5px 3px #eee;
+    padding: 30px;
+    border-radius: 0.25em;
+}
+
+#crearCuenta input {
+    margin: 10px;
+    padding: 20px;
+}
+
+#crearCuenta button {
+    margin: 10px;
+}

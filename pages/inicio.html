@@ -22,6 +22,7 @@
                         <li><a href="about.html">Acerca de </a></li>
                         <li><a href="catalogue.html">Catálogo </a></li>
                         <li><a href="contact.html">Contacto </a></li>
+                        <li><a href="best.html">Top</a></li>
                     </ul>
                 </nav>
             </div>
@@ -44,6 +45,20 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Ingresar</button>
                 </form>
+                <button type="button" id="changeToRegister" class="btn btn-primary">Crear Cuenta</button>
+            </div>
+
+            <div id="crearCuenta">
+                <form id="signup-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Correo electrónico" id="signup-email" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Contraseña" id="signup-password" class="form-control" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Crear Cuenta</button>
+                </form>
+                <button type="button" id="changeToLogin" class="btn btn-primary">Cambiar a Iniciar</button>
             </div>
 
             <div id="agregar">
@@ -144,10 +159,11 @@
             integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
             crossorigin="anonymous"
         ></script>
-        <script src="../scripts/elements.js"></script>
-        <script src="../scripts/structures.js"></script>
-        <script src="../scripts/functions.js"></script>
-        <script src="../scripts/inicio.js"></script>
+        <script type="text/javascript" src="../scripts/elements.js"></script>
+        <script type="text/javascript" src="../scripts/structures.js"></script>
+        <script type="text/javascript" src="../scripts/functions.js"></script>
+        <script type="text/javascript" src="../scripts/best.js"></script>
+        <script type="text/javascript" src="../scripts/inicio.js"></script>
         <!-- No encontré otra opción -->
         <link rel="stylesheet" href="../css/inicio.css" />
     </body>

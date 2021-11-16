@@ -5,6 +5,7 @@ const continentCards = document.getElementById("continent-cards");
 const continentsContainer = document.getElementById("continents");
 const logueo = document.getElementById("logueo");
 const agregar = document.getElementById("agregar");
+const registro = document.getElementById("crearCuenta")
 const backButton = document.getElementById("back-button");
 const send = document.getElementById("search");
 let iniYear = document.getElementById("iniYear");

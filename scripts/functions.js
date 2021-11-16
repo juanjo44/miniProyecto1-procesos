@@ -1,3 +1,5 @@
+
+
 // Pinta los datos de cada categoría
 const categorize = (coinQuery, billQuery, continent) => {
     let countries = {},
@@ -108,6 +110,10 @@ const cleanScreenLogin = () => {
 const cleanScreenAgregar = () => {
     agregar.style.display = "none";
 };
+
+const cleanScreenSignUp = () =>{
+    crearCuenta.style.display = "none";
+}
 
 //Procesa los datos de input que se le dieron al filtro
 const dataProcessing = (yi, yf, di, df, pais) => {
@@ -339,7 +345,6 @@ const updateFeatured = async (ultimo, nuevo, collection) => {
             console.error("Error writing document: ", error);
         });
 };
-
 // Eventos de like
 const setLike = () => {
     // Los botones de like
@@ -349,24 +354,51 @@ const setLike = () => {
     // Evento de click para cada botón de like de monedas
     coinLike.forEach((likeButton) => {
         likeButton.addEventListener("click", async (e) => {
-            const doc = await db.collection(e.target.dataset.continent).doc(e.target.dataset.id).get();
-            const i = doc.data().likes + 1;
-            await updateDocument(doc.id, {likes: i}, e.target.dataset.continent);
-
-            // Para actualizar los destacados
-            const featuredC = await db
-                .collection("featuredCoins")
-                .orderBy("likes", "asc")
-                .limit(1)
-                .get()
-                .then((snapshot) => {
-                    snapshot.docs.forEach(async (featuredCoins) => {
-                        await updateDocument(featuredCoins.id, {likes: i}, "featuredCoins");
-                        if (featuredCoins.data().likes < i) {
-                            updateFeatured(featuredCoins, doc, "featuredCoins");
-                        }
-                    });
+            // const auth2 = await auth.getAuth();
+            const user = auth.currentUser;
+            let email = "";
+            if (user){
+                user.providerData.forEach((profile) => {
+                    email = profile.email
                 });
+                const doc = await db.collection(e.target.dataset.continent).doc(e.target.dataset.id).get();
+                const likedByArray = doc.data().likedBy
+                const isUser = likedByArray.find(function(element){
+                    return element === email
+                })
+                if (isUser === undefined){
+                    
+                    const i = doc.data().likes + 1;
+                    await updateDocument(doc.id, {likes: i}, e.target.dataset.continent);
+                    likedByArray.push(email);
+                    const newLikeUser = likedByArray;
+                    console.log(newLikeUser)
+                    await updateDocument(doc.id, {likedBy: newLikeUser}, e.target.dataset.continent);
+                    
+                    // Para actualizar los destacados
+                    const featuredC = await db
+                    .collection("featuredCoins")
+                    .orderBy("likes", "asc")
+                    .limit(1)
+                    .get()
+                    .then((snapshot) => {
+                        snapshot.docs.forEach(async (featuredCoins) => {
+                            await updateDocument(featuredCoins.id, {likes: i}, "featuredCoins");
+                            if (featuredCoins.data().likes < i) {
+                                updateFeatured(featuredCoins, doc, "featuredCoins");
+                            }
+                        });
+                    });
+            }
+            else{
+                alert("Ya le diste like :)")
+            }
+            }
+            else{
+                alert("Primero Incia Sesión")
+            }
+            
+            
         });
     });
 
@@ -485,7 +517,7 @@ const updateRecentBills = async (objectCollection) => {
     });
 };
 
-const addNewElement = async (country, year, denType, den, front, back, typeC_B) => {
+const addNewElement = async (newUser, country, year, denType, den, front, back, typeC_B) => {
     const refFront = firebase.storage().ref();
     const refBack = firebase.storage().ref();
     const nameFileFront = `${new Date()}_${front.name}`;
@@ -526,6 +558,7 @@ const addNewElement = async (country, year, denType, den, front, back, typeC_B) 
                         .then(async (url) => {
                             urlBack = url;
                             const newMoney = {
+                                user: newUser,
                                 back: urlBack,
                                 barter: 1,
                                 country: parseInt(country, 10),
@@ -557,6 +590,7 @@ const addNewElement = async (country, year, denType, den, front, back, typeC_B) 
                         .then(async (url) => {
                             urlBack = url;
                             const newMoney = {
+                                user: newUser,
                                 back: urlBack,
                                 barter: 1,
                                 country: parseInt(country, 10),
@@ -588,6 +622,7 @@ const addNewElement = async (country, year, denType, den, front, back, typeC_B) 
                         .then(async (url) => {
                             urlBack = url;
                             const newMoney = {
+                                user: newUser,
                                 back: urlBack,
                                 barter: 1,
                                 country: parseInt(country, 10),
@@ -619,6 +654,7 @@ const addNewElement = async (country, year, denType, den, front, back, typeC_B) 
                         .then(async (url) => {
                             urlBack = url;
                             const newMoney = {
+                                user: newUser,
                                 back: urlBack,
                                 barter: 1,
                                 country: parseInt(country, 10),
@@ -650,6 +686,7 @@ const addNewElement = async (country, year, denType, den, front, back, typeC_B) 
                         .then(async (url) => {
                             urlBack = url;
                             const newMoney = {
+                                user: newUser,
                                 back: urlBack,
                                 barter: 1,
                                 country: parseInt(country, 10),
@@ -681,6 +718,7 @@ const addNewElement = async (country, year, denType, den, front, back, typeC_B) 
                         .then(async (url) => {
                             urlBack = url;
                             const newMoney = {
+                                user: newUser,
                                 back: urlBack,
                                 barter: 1,
                                 country: parseInt(country, 10),

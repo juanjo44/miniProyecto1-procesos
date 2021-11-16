@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/best.css"/>
+    <link rel="shortcut icon" href="../images/logo.svg" type="image/x-icon" />
+    <title>Mejores Usuarios</title>
+</head>
+<body>
+    <header class="header">
+        <figure>
+            <img src="../images/logo.svg" alt="Logo" />
+        </figure>
+        <div class="menu">
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home </a></li>
+                    <li><a href="about.html">Acerca de </a></li>
+                    <li><a href="catalogue.html">Catálogo </a></li>
+                    <li><a href="contact.html">Contacto </a></li>
+                    <li><a href="best.html">Top</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="ingreso-boton">
+            <nav>
+                <ul>
+                    <li><a href="inicio.html">Cuenta </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <div class="best_users_by_uploads">
+            <h2>Top Cantidad de Publicaciones</h2>
+        </div>
+        <div class="best_users_by_likes">
+            <h2>Top Cantidad de likes</h2>
+        </div>
+    </div>
+    
+
+    <footer class="footer">
+        <div>
+            <img src="../images/logo.svg" alt="logo" />
+            <p>Numismática Martínez</p>
+            <p>
+                Designed with ❤️ by:
+                <a href="https://github.com/juanjo44">Juan José Betancourt</a>, <a href="https://github.com/NicolasDelgado1228">Nicolás Delgado</a>,
+                <a href="https://github.com/paladinescamila">Camila Paladines</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-storage.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBi287HnrP_NjYh0Z0szW9SmGEXLb6_gBk",
+            authDomain: "numismatica-martinez-jnc.firebaseapp.com",
+            projectId: "numismatica-martinez-jnc",
+            storageBucket: "numismatica-martinez-jnc.appspot.com",
+            messagingSenderId: "813099682427",
+            appId: "1:813099682427:web:e855eb47da740136a830de",
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+    </script>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"
+    ></script>
+    <script src="../scripts/elements.js"></script>
+    <script src="../scripts/structures.js"></script>
+    <script src="../scripts/functions.js"></script>
+    <script src="../scripts/inicio.js"></script>
+    <script src="../scripts/best.js"></script>
+</body>
+</html>
