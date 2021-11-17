@@ -5,12 +5,13 @@ const addNewCoin = document.querySelector('#addCoin-form');
 const logout = document.querySelector('#logout');
 const changeToLogin = document.querySelector("#changeToLogin");
 const changeToRegister = document.querySelector('#changeToRegister');
-
+let userEmail = "";
 //Get the information and logging
 signInForm.addEventListener('submit', e =>{
     e.preventDefault();
     const email = document.querySelector('#signin-email').value;
     const password = document.querySelector('#signin-password').value;
+    userEmail = email
     auth
     .signInWithEmailAndPassword(email, password)
     .then(userCredential => {
@@ -75,7 +76,7 @@ addNewCoin.addEventListener('submit', async (e) => {
     const front = document.querySelector('#formFileFrontCoin').files[0];
     const back = document.querySelector('#formFileBackCoin').files[0];
 
-    addNewElement(globalUser, country, year, denType, den, front, back,"C");
+    addNewElement(userEmail, country, year, denType, den, front, back,"C");
     //alert("La moneda de " + country + " de " + denType + den + " de " + year + " ha sido cargado al catálogo con éxito");
 })
 
