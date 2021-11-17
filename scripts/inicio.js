@@ -63,7 +63,7 @@ addNewBill.addEventListener('submit', async (e) => {
     const den = document.querySelector('#addDenBill').value;
     const front = document.querySelector('#formFileFrontBill').files[0];
     const back = document.querySelector('#formFileBackBill').files[0];
-    addNewElement(globalUser, country, year,denType ,den, front, back, "B");
+    addNewElement(userEmail, country, year,denType ,den, front, back, "B");
     //alert("El billete de " + country + " de " + denType + den + " de " + year + " ha sido cargado al catálogo con éxito");
 })
 
