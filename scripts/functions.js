@@ -568,6 +568,7 @@ const addNewElement = async (newUser, country, year, denType, den, front, back, 
                                 front: urlFront,
                                 likes: 0,
                                 year: parseInt(year, 10),
+                                likedBy: [""],
                             };
                             if (typeC_B === "B") {
                                 await db.collection("antarticaBills").add(newMoney);
@@ -600,6 +601,7 @@ const addNewElement = async (newUser, country, year, denType, den, front, back, 
                                 front: urlFront,
                                 likes: 0,
                                 year: parseInt(year, 10),
+                                likedBy: [""],
                             };
                             if (typeC_B === "B") {
                                 await db.collection("africaBills").add(newMoney);
@@ -632,6 +634,7 @@ const addNewElement = async (newUser, country, year, denType, den, front, back, 
                                 front: urlFront,
                                 likes: 0,
                                 year: parseInt(year, 10),
+                                likedBy: [""],
                             };
                             if (typeC_B === "B") {
                                 await db.collection("europeBills").add(newMoney);
@@ -664,6 +667,7 @@ const addNewElement = async (newUser, country, year, denType, den, front, back, 
                                 front: urlFront,
                                 likes: 0,
                                 year: parseInt(year, 10),
+                                likedBy: [""],
                             };
                             if (typeC_B === "B") {
                                 await db.collection("americaBills").add(newMoney);
@@ -696,6 +700,7 @@ const addNewElement = async (newUser, country, year, denType, den, front, back, 
                                 front: urlFront,
                                 likes: 0,
                                 year: parseInt(year, 10),
+                                likedBy: [""],
                             };
                             if (typeC_B === "B") {
                                 await db.collection("oceaniaBills").add(newMoney);
@@ -728,6 +733,7 @@ const addNewElement = async (newUser, country, year, denType, den, front, back, 
                                 front: urlFront,
                                 likes: 0,
                                 year: parseInt(year, 10),
+                                likedBy: [""],
                             };
                             if (typeC_B === "B") {
                                 await db.collection("asiaBills").add(newMoney);
