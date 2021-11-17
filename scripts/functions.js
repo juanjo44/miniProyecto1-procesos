@@ -405,24 +405,49 @@ const setLike = () => {
     // Evento de click para cada botón de like de billetes
     billLike.forEach((likeButton) => {
         likeButton.addEventListener("click", async (e) => {
-            const doc = await db.collection(e.target.dataset.continent).doc(e.target.dataset.id).get();
-            const i = doc.data().likes + 1;
-            await updateDocument(doc.id, {likes: i}, e.target.dataset.continent);
+            const user = auth.currentUser;
+            let email = "";
+            if (user){
+                user.providerData.forEach((profile) => {
+                    email = profile.email
+                });
+                const doc = await db.collection(e.target.dataset.continent).doc(e.target.dataset.id).get();
+                const likedByArray = doc.data().likedBy
+                const isUser = likedByArray.find(function(element){
+                    return element === email
+                })
+                if(isUser === undefined){
+                    const i = doc.data().likes + 1;
+                    await updateDocument(doc.id, {likes: i}, e.target.dataset.continent);
+                    likedByArray.push(email);
+                    const newLikeUser = likedByArray;
+                    console.log(newLikeUser)
+                    await updateDocument(doc.id, {likedBy: newLikeUser}, e.target.dataset.continent);
+
+                    const featuredB = await db
+                        .collection("featuredBills")
+                        .orderBy("likes", "asc")
+                        .limit(1)
+                        .get()
+                        .then((snapshot) => {
+                            snapshot.docs.forEach(async (featuredBills) => {
+                                await updateDocument(featuredBills.id, {likes: i}, "featuredBills");
+                                if (featuredBills.data().likes < i) {
+                                    updateFeatured(featuredBills, doc, "featuredBills");
+                                }
+                            });
+                        });
+                }
+                else{
+                    alert("Ya le diste like :)")
+                }
+            }
+            else{
+                alert("Primero Incia Sesión")
+            }
+            
 
             // Para actualizar los destacados
-            const featuredB = await db
-                .collection("featuredBills")
-                .orderBy("likes", "asc")
-                .limit(1)
-                .get()
-                .then((snapshot) => {
-                    snapshot.docs.forEach(async (featuredBills) => {
-                        await updateDocument(featuredBills.id, {likes: i}, "featuredBills");
-                        if (featuredBills.data().likes < i) {
-                            updateFeatured(featuredBills, doc, "featuredBills");
-                        }
-                    });
-                });
         });
     });
 };
